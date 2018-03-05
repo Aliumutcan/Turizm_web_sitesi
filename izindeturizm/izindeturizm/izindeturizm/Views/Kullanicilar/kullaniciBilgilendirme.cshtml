@@ -1,0 +1,48 @@
+﻿
+@if (ViewBag.mesaj != null && ViewBag.mesajderecesi != null)
+{
+    <div id="hatamesajlari"  onclick="kapa();" style="z-index:3300; position:absolute;top:0px;left:0px; background-color:rgba(0, 0, 0, 0.50);width:100%;height:1500px;overflow:hidden;">
+     
+        <div style="position:fixed;top:40%;left:30%; cursor:pointer;">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 style="color:white;">İşlem Sonucunuz</h2>
+                    @*<div class="alert bg-primary" role="alert">
+                            <svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg> Welcome to the admin dashboard panel bootstrap template <a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                        </div>*@
+                    @if (ViewBag.mesajderecesi == "0")
+                {
+                    <div class="alert bg-success" role="alert" style="height:100px; background-color:rgb(156, 245, 56); line-height:100px;">
+                        @ViewBag.mesaj
+                    </div>
+                }
+                else if (ViewBag.mesajderecesi == "1")
+                {
+                    <div class="alert bg-warning" role="alert" style="height:100px; background-color:rgb(255, 250, 33); line-height:100px;">
+                        @ViewBag.mesaj
+                    </div>
+                }
+                else if (ViewBag.mesajderecesi == "2")
+                {
+                    <div class="alert bg-danger" role="alert" style="height:100px; background-color:rgb(254, 50, 22); line-height:100px;">
+                        @ViewBag.mesaj
+                    </div>
+                }
+
+                </div>
+            </div>
+
+
+
+            <script>
+            function kapa() {
+                document.getElementById("hatamesajlari").style.display = "none";
+            }
+            </script>
+        </div>
+
+    </div>
+
+}
+

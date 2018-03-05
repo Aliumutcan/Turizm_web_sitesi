@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "AnaSayfa";
+    Layout = "~/Views/Kullanicilar.cshtml";
+}
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@using PagedList;
+@model List<izindeturizm.Models.Urunler>
+<!-- banner-bottom -->
+<div class="banner-bottom">
+    <!-- container -->
+    <div class="container">
+        <div class="banner-bottom-grids">
+            <!--bura her bir satır için 4 taneyi içine alıyor eğer 3 tanede bir kayma olursa buraya mudale et-->
+
+            <div><h2>Yurt İçi Turlar</h2> <div style="color:red; float:right;"><a href="@Url.RouteUrl("tumturlar", new { sayfa = 1 })">Tümünü Gör</a></div></div>
+            <br />
+            @Html.Partial("Parital_Urunler",Model.ToPagedList(1,Model.Count))
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //container -->
+</div>
+<!-- //banner-bottom -->

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.title</title>
+    <link href="~/content/css/Yonetimcss.css" rel="stylesheet" />
+    <link href="~/content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/content/css/datepicker3.css" rel="stylesheet" />
+   <link href="~/content/css/styles.css" rel="stylesheet" />
+    @*<link href="~/content/css/bootstrap-table.css" rel="stylesheet" />*@
+    
+    <!--Icons-->
+    <script src="~/content/js/lumino.glyphs.js"></script>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="~/content/js/genel.js"></script>
+    <script src="@Url.Content("~/Scripts/tinymce/tiny_mce.js")" type="text/javascript"></script>
+    
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+
+<body>
+    <div id="siyahkaplama"></div>
+    @if (Session["admin"] != null)
+    {
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><span>Yönetici</span> Paneli</a>
+                    <ul class="user-menu">
+                        <li class="dropdown pull-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Yönetici <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="@Url.RouteUrl("yyoneticibilgileri")"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg>Yonetici Bilgileri</a></li>
+                                <li><a href="@Url.RouteUrl("ycikis")"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg>Cıkış</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <form role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                </div>
+            </form>
+            <ul class="nav menu">
+
+                <li><a href="@Url.RouteUrl("yanasayfa")">AnaSayfa</a></li>
+                <li><a href="@Url.RouteUrl("ymenu")">Menüler</a></li>
+                <!--<li><a href="charts.html">Fırsatlar</a></li>-->
+                <li><a href="@Url.RouteUrl("yturekle")">Urunler</a></li>
+                <li><a href="@Url.RouteUrl("ytumtransferler")">Transferler</a></li>
+                <li><a href="@Url.RouteUrl("ygaleri")">Galeri</a></li>
+                <li role="presentation" class="divider"></li>
+                <li><a href="@Url.RouteUrl("ycikis")"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>Cıkış</a></li>
+            </ul>
+        </div><!--/.sidebar-->
+        
+    }
+   @RenderBody()
+ 
+
+    <script src="~/content/js/jquery-1.11.1.min.js"></script>
+    <script src="~/content/js/bootstrap.min.js"></script>
+    <script src="~/content/js/chart.min.js"></script>
+    <script src="~/content/js/chart-data.js"></script>
+    <script src="~/content/js/easypiechart.js"></script>
+    <script src="~/content/js/easypiechart-data.js"></script>
+    <script src="~/content/js/bootstrap-datepicker.js"></script>
+
+
+
+    <script>
+		$('#calendar').datepicker({
+		});
+
+		!function ($) {
+		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){
+		        $(this).find('em:first').toggleClass("glyphicon-minus");
+		    });
+		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
+
+		$(window).on('resize', function () {
+		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function () {
+		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		})
+    </script>
+</body>
+
+</html>

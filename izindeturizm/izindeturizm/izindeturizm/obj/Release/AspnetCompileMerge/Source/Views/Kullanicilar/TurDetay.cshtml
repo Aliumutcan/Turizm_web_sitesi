@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "TUR DETAYLARI";
+    Layout = "~/Views/detaykullanici.cshtml";
+}
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@model Turlar
+<!-- banner-bottom -->
+<div class="banner-bottom">
+    <!-- container -->
+    <div class="container">
+        <div class="faqs-top-grids">
+            <!--single-page-->
+            <div class="single-page">
+                <div class="col-md-8 single-gd-lt">
+                    <div class="single-pg-hdr">
+                        <h2>@Model.baslik </h2>
+                        <p>@Model.aciklama</p>
+                        <p>Tarih: @Model.turbaslamatarihi.Value.ToString("dd-MMM-yyyy")</p>
+                    </div>
+                    <div class="flexslider">
+                        <ul class="slides">
+                            @if (ViewData["galeri"] != null)
+                            {
+                                foreach (var galeri in (List<Galeri>)ViewData["galeri"])
+                                {
+                                    <li data-thumb="@galeri.resimyol">
+                                        <img src=" @galeri.resimyol " alt="" />
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                    <!-- FlexSlider -->
+                    <script defer src="~/content/js/jquery.flexslider.js"></script>
+                    <script>
+                        // Can also be used with $(document).ready()
+                        $(window).load(function () {
+                            $('.flexslider').flexslider({
+                                animation: "slide",
+                                controlNav: "thumbnails"
+                            });
+                        });
+                    </script>
+
+                </div>
+                <div class="col-md-4 single-gd-rt">
+                    <div class="spl-btn">
+                        <div class="spl-btn-bor">
+                            <a href="#">
+                            </a>
+                            <p>Fiyat</p>
+                            <script>
+                                $(document).ready(function () {
+                                    $('[data-toggle="tooltip"]').tooltip();
+                                });
+                            </script>
+                        </div>
+                        <div class="sp-bor-btn text-right">
+                            <h4>@Model.fiyat.Value.ToString("###.##") </h4>
+                            <p class="best-pri">TL</p>
+                            <a class="best-btn" href="#">Rezervasyon</a>
+                            <a class="best-btn" href="#">Satın Al</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--//single-page-->
+        </div>
+        <div class="c-rooms">
+            <div class="p-table">
+                <div class="p-table-grids">
+                    <div class="col-md-12">
+                        <div class="p-table-grad-heading">
+                            <h6>Geniş Açıklama</h6>
+                        </div>
+                        <div class="p-table-grid-info">
+                            <div class="room-basic-info">
+                                @Html.Raw(Model.icerik)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //container -->
+</div>
+<!-- //banner-bottom -->

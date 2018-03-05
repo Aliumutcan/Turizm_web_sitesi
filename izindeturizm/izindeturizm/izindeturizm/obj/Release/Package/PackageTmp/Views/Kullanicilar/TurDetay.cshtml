@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "TUR DETAYLARI";
+    Layout = "~/Views/detaykullanici.cshtml";
+}
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@model Urunler
+<!-- banner-bottom -->
+<div class="banner-bottom">
+
+    <!-- container -->
+    <div class="container">
+        <div class="faqs-top-grids">
+            <!--single-page-->
+            <div class="single-page">
+                <div class="col-md-8 single-gd-lt">
+                    <div class="single-pg-hdr">
+                        <h2>@Model.baslik </h2>
+                        @if (Model.tarih != null)
+                        {
+                            <p>Tur Eklenme Tarihi: @Model.tarih.Value.ToString("dd-MMM-yyyy")</p>
+                        }
+
+                    </div>
+                    <div class="flexslider">
+                        <ul class="slides">
+                            @if (Model.Galeri != null)
+                            {
+                                foreach (var galeri in Model.Galeri)
+                                {
+                                    <li data-thumb="@galeri.resimyol">
+                                        <img src=" @galeri.resimyol" alt="" />
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                    <!-- FlexSlider -->
+                    <script src="~/content/js/jquery.flexslider.js"></script>
+                    <script>
+                        // Can also be used with $(document).ready()
+                        $(document).ready(function () {
+                            $('.flexslider').flexslider({
+                                animation: "slide",
+                                controlNav: "thumbnails"
+                            });
+                        });
+                    </script>
+
+                </div>
+                <div class="col-md-4 single-gd-rt">
+                    <div class="spl-btn">
+                        <div class="spl-btn-bor">
+                            @*<a href="#">
+                                <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                            </a>*@
+                            <p>Fiyat</p>
+                            <script>
+                                $(document).ready(function () {
+                                    $('[data-toggle="tooltip"]').tooltip();
+                                });
+                            </script>
+                        </div>
+                        <div class="sp-bor-btn text-right">
+                            <h3 style="float:left;">@Model.kacgun_kacgece</h3>
+                            <h4><span></span>@Model.fiyat</h4>
+                            <p class="best-pri">@Model.para_birimi</p>
+                            @if (Model.talep_formu == true)
+                            {
+                                <div class="best-btn" onclick="ac();">Talep Formu</div>
+                                <div id="talepformu" style="display:none;">
+                                    @{ Html.RenderAction("TalepFormu"); }
+                                </div>
+                                <script>
+                                    function ac() {
+                                        document.getElementById("talepformu").style.display = "block";
+                                    }
+                                    function kapa() {
+                                        document.getElementById("talepformu").style.display = "none";
+                                    }
+                                </script>
+
+                                        }
+                                        else
+                                        {
+                                            if (Model.Galeri.Where(x => x.aciklama == "saltur").Count() > 0)
+                                            {
+                                                <a class="best-btn" href="@Url.RouteUrl("turrezarvasyon",new {baslik=Model.baslik.routeduzelt(),id=Model.id,nere="saltur" })">Rezervasyon</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="best-btn" href="@Url.RouteUrl("turrezarvasyon",new {baslik=Model.baslik.routeduzelt(),id=Model.id,nere="izinde" })">Rezervasyon</a>
+                                            }
+
+
+                                        }
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!--//single-page-->
+        </div>
+        <div class="c-rooms">
+            <div class="p-table">
+                <div class="p-table-grids">
+                    <div class="col-md-12">
+                        <div class="p-table-grad-heading">
+                            <h6>Geniş Açıklama</h6>
+                        </div>
+                        <div class="p-table-grid-info">
+                            <div class="room-basic-info">
+                                @Html.Raw(Model.icerik)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //container -->
+</div>
+<!-- //banner-bottom -->
+@{Html.RenderAction("kullaniciBilgilendirme");}

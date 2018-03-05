@@ -1,0 +1,125 @@
+﻿
+
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@using PagedList;
+@model IPagedList<Urunler>
+@{
+    List<Etiketler> etiketler = (List<Etiketler>)ViewData["etiketler"];
+
+}
+<div class="banner-bottom-grids">
+    <!--bura her bir satır için 4 taneyi içine alıyor eğer 3 tanede bir kayma olursa buraya mudale et-->
+    @if (Model.Count > 0)
+    {
+        foreach (var turlar in Model)
+        {
+            <div class="col-md-4 weekend-grids">
+                <div class="weekend-grid">
+                    <a href="
+                       @if (turlar.Galeri.Where(x => x.aciklama == "saltur").Count() > 0)
+                       {
+                            @Url.RouteUrl("turdetay", new { id = turlar.id, baslik = routeurlduzenle.routeduzelt(turlar.baslik), nere="saltur" })
+                       }
+                       else
+                       {
+                       @Url.RouteUrl("turdetay", new { id = turlar.id, baslik = routeurlduzenle.routeduzelt(turlar.baslik), nere="izindetur" })
+
+                        }
+ ">
+                        <div>
+                            @if (turlar.kacgun_kacgece!=null && turlar.kacgun_kacgece.Length>2)
+                            {
+                                <div class="gungece">
+                                    <style>
+                                        .serit {
+                                            -webkit-transform: rotate(180deg);
+                                            -moz-transform: rotate(180deg);
+                                            -o-transform: rotate(180deg);
+                                            -ms-transform: rotate(180deg);
+                                            background-image: url('../../content/img/iconlar/serit.png');
+                                            background-repeat: no-repeat;
+                                            position: absolute;
+                                            left: 59%;
+                                            width: 160px;
+                                            height: 40px;
+                                            line-height: 40px;
+                                            text-align: center;
+                                            margin-left: -10px;
+                                            background-size: 160px;
+                                            z-index: 2009;
+                                            background-position: 0 -0px;
+                                            color: white;
+                                        }
+
+                                        .cevir_180 {
+                                            -webkit-transform: rotate(180deg);
+                                            -moz-transform: rotate(180deg);
+                                            -o-transform: rotate(180deg);
+                                            -ms-transform: rotate(180deg);
+                                        }
+                                    </style>
+                                    <div class="serit">
+                                        <div class="cevir_180">@turlar.kacgun_kacgece</div>
+                                    </div>
+
+                                </div>
+                            }
+
+
+                            @if (turlar.Etiketler.Count > 0)
+                            {
+                                <div style="background-image: url('../../content/img/iconlar/serit.png'); background-repeat: no-repeat; position: absolute; width: 160px; height: 40px; line-height:40px;text-align:center; margin-left:-10px; background-size:160px; z-index: 2009; background-position:0 -46px; color:white;">
+
+
+                                    <text>@turlar.Etiketler.Select(x => x.etiket_adi).Take(1).FirstOrDefault()</text>
+
+                                </div>
+                            }
+                            @foreach (var galeri in turlar.Galeri)
+                            {
+                                if (galeri.anaID == turlar.id && galeri.nereicin == "turlar")
+                                {
+                                    <img src="@galeri.resimyol" height="200" />
+
+                                    break;
+                                }
+                                else if (galeri.aciklama == "saltur")
+                                {
+                                    <img src="@galeri.resimyol" height="200" />
+
+                                    break;
+                                }
+                            }
+
+                        </div>
+                        <div class="deals-info-grid">
+                            <div class="deals-grids">
+                                <div class="col-md-8 deals-rating" style="height:60px;">
+                                    <h3>@turlar.baslik</h3>
+                                </div>
+                                <div class="col-md-4 deals-price">
+                                    <p>
+                                        @if (turlar.para_birimi != "TL")
+                    {
+                                            <text>@turlar.para_birimi  @turlar.fiyat</text>
+                                        }
+                                        else
+                                        {
+                                            <text>TL @turlar.fiyat</text>
+                                        }
+
+                                    </p>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        }
+    }
+
+    <div class="clearfix"> </div>
+</div>

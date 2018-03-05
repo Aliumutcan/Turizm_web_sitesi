@@ -1,0 +1,51 @@
+﻿
+@using izindeturizm.Models;
+@model List<Galeri>
+
+<!--<div class="col-md-4 banner-left">
+    <section class="slider2">
+        <div class="flexslider">
+            <ul class="slides">
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <li>
+                        <div class="slider-info">
+                            <img src="Model[i].resimyol" height="550" alt="">
+                        </div>
+                    </li>
+
+                }
+            </ul>
+        </div>
+    </section>
+    </div>
+    <!--FlexSlider-->
+
+
+<style>
+    .flexslider ol img[src="undefined"] {
+        display: none;
+    }
+</style>
+<div style="display:none;">
+    <input type="hidden" value="@Model.Count"  id="galeriboyutu"/>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <img data-target="@Model[i].link" id="bg_@i" src="@Model[i].resimyol" />
+    }
+</div>
+@*<script>
+    var sayac = 0;
+    $(document).ready(function () {
+
+        setInterval(function () { resimler() }, 5000);
+
+        
+    })
+
+    function resimler() {
+        var src = document.getElementById("bg_" + sayac).getAttribute("src");
+        document.getElementById("banner").style.backgroundImage = src;
+        sayac++;
+    }
+</script>*@

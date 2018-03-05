@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Talep Formu";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+
+@using izindeturizm.Models;
+
+@model List<Urun_Talep_Formu>
+@if (Model != null)
+{
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Tüm Turlar</div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Adı Soyadı</th>
+                                        <th>İstek Notu</th>
+                                        <th>Eposta</th>
+                                        <th>Telefon Numarası</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <th>@item.id</th>
+                                                <th>@item.adsoyad</th>
+                                                <th>@item.istek_notu</th>
+                                                <th>@item.eposta</th>
+                                                <th>@item.tel</th>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <text>Hiç bir ver bulunamadı</text>
+                                    }
+                                </tbody>
+                            </table>
+                            <script>
+                            var idtut = -1;
+                            function goster(id) {
+                                gizle(idtut);
+                                document.getElementById("dialog_" + id).style.display = "block";
+                                document.getElementById("siyahkaplama").style.display = "block";
+                                idtut = id;
+                            }
+                            function gizle(id) {
+                                if (id > -1) {
+                                    document.getElementById("dialog_" + id).style.display = "none";
+                                    document.getElementById("siyahkaplama").style.display = "none";
+                                }
+                            }
+                            </script>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@{Html.RenderAction("YMesaj");}
+
+
+
+
+
+
+

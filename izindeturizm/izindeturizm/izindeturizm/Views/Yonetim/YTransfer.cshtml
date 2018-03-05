@@ -1,0 +1,339 @@
+﻿
+@{
+    ViewBag.Title = "Transfer";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+@using izindeturizm.Models;
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active"><a href="@Url.RouteUrl("ytransfer")">Transfer ekle</a></li>
+            <li><a href="@Url.RouteUrl("ytumtransferler",new {sayfa=1 })">Yapılan Tum Transferler</a></li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Kalkış Yeri Ekle</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("YKalkis", "Yonetim", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <label>Tur Başlığı</label>
+                                <input class="form-control" name="kalkisyer" id="kalkis" maxlength="100" placeholder="Kalkış durak yeri">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control" id="btnkalkis" value="Tamam">
+                                <input type="hidden" name="id" id="kalkisid" />
+                            </div>
+
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Kalkış Yeri</th>
+                                    <th>İŞLEMLER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ((List<TKalkis>)ViewData["kalkis"] != null)
+                                {
+                                    foreach (var item in (List<TKalkis>)ViewData["kalkis"])
+                                    {
+                                        <tr>
+                                            <th>@item.kalkisyer</th>
+                                            <th>
+                                                <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                <div class="evethayir" id="ehackapa_@item.id">
+                                                    <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                    <div class="uyaripenceresisecenek">
+                                                        <div class="evet"><a href="@Url.RouteUrl("ykalkissil",new { id=item.id })"> EVET</a> </div>
+                                                        <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                    </div>
+                                                </div>
+
+                                                <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_" + id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_" + id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+                                                    function guncellekalkis(id, kalkis) {
+                                                        document.getElementById("kalkisid").value = id;
+                                                        document.getElementById("kalkis").value = kalkis;
+                                                        document.getElementById("btnkalkis").value = "Günecelle";
+                                                    }
+                                                </script>
+
+                                                <div style="float:left;" onclick="guncellekalkis('@item.id','@item.kalkisyer');"><svg class="glyph stroked pencil" width="40" height="40"><use xlink:href="#stroked-pencil" /></svg></div>
+
+                                            </th>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <text> bir ver bulunamadı</text>
+                                }
+                            </tbody>
+                        </table>
+                        <script>
+                            var idtut = -1;
+                            function goster(id) {
+                                gizle(idtut);
+                                document.getElementById("dialog_" + id).style.display = "block";
+                                document.getElementById("siyahkaplama").style.display = "block";
+                                idtut = id;
+                            }
+                            function gizle(id) {
+                                if (id > -1) {
+                                    document.getElementById("dialog_" + id).style.display = "none";
+                                    document.getElementById("siyahkaplama").style.display = "none";
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Varış Yeri Ekle</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("YVaris", "Yonetim", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <label>Varış Yeri</label>
+                                <input class="form-control" name="varisyer" id="varisyer" maxlength="100" placeholder="Varış durak yeri">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control" id="btnvaris" value="Tamam">
+                                <input type="hidden" name="id" id="varisid" />
+                            </div>
+
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Varış Yeri</th>
+                                    <th>İŞLEMLER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ((List<TVaris>)ViewData["varis"] != null)
+                                {
+                                    foreach (var item in (List<TVaris>)ViewData["varis"])
+                                    {
+                                        <tr>
+                                            <th>@item.varisyer</th>
+                                            <th>
+                                                <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                <div class="evethayir" id="ehackapa_@item.id">
+                                                    <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                    <div class="uyaripenceresisecenek">
+                                                        <div class="evet"><a href="@Url.RouteUrl("yvarissil",new { id=item.id })"> EVET</a> </div>
+                                                        <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                    </div>
+                                                </div>
+
+                                                <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_" + id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_" + id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+                                                    function guncellevaris(id, varisyer) {
+                                                        document.getElementById("varisid").value = id;
+                                                        document.getElementById("varisyer").value = varisyer;
+                                                        document.getElementById("btnvaris").value = "Güncelle";
+                                                    }
+                                                </script>
+
+                                                <div style="float:left;" onclick="guncellevaris('@item.id','@item.varisyer');"><svg class="glyph stroked pencil" width="40" height="40"><use xlink:href="#stroked-pencil" /></svg></div>
+
+                                            </th>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <text> bir ver bulunamadı</text>
+                                }
+                            </tbody>
+                        </table>
+                        <script>
+                            var idtut = -1;
+                            function goster(id) {
+                                gizle(idtut);
+                                document.getElementById("dialog_" + id).style.display = "block";
+                                document.getElementById("siyahkaplama").style.display = "block";
+                                idtut = id;
+                            }
+                            function gizle(id) {
+                                if (id > -1) {
+                                    document.getElementById("dialog_" + id).style.display = "none";
+                                    document.getElementById("siyahkaplama").style.display = "none";
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Fiyatlandır</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("YFiyat", "Yonetim", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <label>Kalkış seç</label>
+                                <select name="kalkisID" id="kalkislar" class="form-control selected">
+                                    <option value="-1">Kalkış noktası secin</option>
+                                    @if ((List<TKalkis>)ViewData["kalkis"] != null)
+                                    {
+                                        foreach (var item in (List<TKalkis>)ViewData["kalkis"])
+                                        {
+                                            <option value="@item.id">@item.kalkisyer</option>
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Varış seç</label>
+                                <select name="varisID" id="varislar" class="form-control selected">
+                                    <option value="-1">Varış noktası secin</option>
+                                    @if ((List<TVaris>)ViewData["varis"] != null)
+                                    {
+                                        foreach (var item in (List<TVaris>)ViewData["varis"])
+                                        {
+                                            <option value="@item.id">@item.varisyer</option>
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Kalkış seç</label>
+                                <input class="form-control" name="fiyat" id="fiyat" maxlength="100" placeholder="Fiyat girin">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control" id="btnfiyat" value="Tamam">
+                                <input type="hidden" name="id" id="fiyatid" />
+                            </div>
+
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Kalkış Yeri</th>
+                                    <th>Varış Yeri</th>
+                                    <th>Fiyatı</th>
+                                    <th>İŞLEMLER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ((List<TFiyat>)ViewData["fiyat"] != null && (List<TVaris>)ViewData["varis"] != null && (List<TKalkis>)ViewData["kalkis"] != null)
+                                {
+                                    foreach (var item in (List<TFiyat>)ViewData["fiyat"])
+                                    {
+                                        <tr>
+                                            @foreach (var kalkis in (List<TKalkis>)ViewData["kalkis"])
+                                            {
+                                                if (kalkis.id == item.kalkisID)
+                                                {
+                                                    <th>@kalkis.kalkisyer</th>
+                                                }
+                                            }
+                                            @foreach (var varis in (List<TVaris>)ViewData["varis"])
+                                            {
+                                                if (varis.id == item.varisID)
+                                                {
+                                                    <th>@varis.varisyer</th>
+                                                }
+                                            }
+                                            <th>@item.fiyat</th>
+                                            <th>
+                                                <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                <div class="evethayir" id="ehackapa_@item.id">
+                                                    <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                    <div class="uyaripenceresisecenek">
+                                                        <div class="evet"><a href="@Url.RouteUrl("yfiyatsil",new { id=item.id })"> EVET</a> </div>
+                                                        <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                    </div>
+                                                </div>
+
+                                                <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_" + id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_" + id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+                                                    function guncelle(id, kalkis, varis, fiyat) {
+                                                        document.getElementById("varislar").value = varis;
+                                                        document.getElementById("kalkislar").value = kalkis;
+                                                        document.getElementById("fiyat").value = fiyat;
+                                                        document.getElementById("fiyatid").value = id;
+                                                        document.getElementById("btnfiyat").value = "Güncelle";
+                                                    }
+                                                </script>
+
+                                                <div style="float:left;" onclick="guncelle('@item.id','@item.kalkisID','@item.varisID','@item.fiyat');"><svg class="glyph stroked pencil" width="40" height="40"><use xlink:href="#stroked-pencil" /></svg></div>
+
+                                            </th>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <text> bir ver bulunamadı</text>
+                                }
+                            </tbody>
+                        </table>
+                        <script>
+                            var idtut = -1;
+                            function goster(id) {
+                                gizle(idtut);
+                                document.getElementById("dialog_" + id).style.display = "block";
+                                document.getElementById("siyahkaplama").style.display = "block";
+                                idtut = id;
+                            }
+                            function gizle(id) {
+                                if (id > -1) {
+                                    document.getElementById("dialog_" + id).style.display = "none";
+                                    document.getElementById("siyahkaplama").style.display = "none";
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.row -->
+
+    </div><!--/.main-->
+
+
+</div>
+
+@{Html.RenderAction("YMesaj");}
+

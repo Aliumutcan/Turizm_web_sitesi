@@ -1,0 +1,406 @@
+﻿
+@{
+    ViewBag.Title = "Ana sayfa";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+@using izindeturizm.Models;
+
+
+<meta http-equiv="refresh" content="60">
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+            <li class="active">Icons</li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Yönetim Paneli</h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-blue panel-widget ">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <img src="~/content/img/iconlar/tur.png" />
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">@ViewBag.tur_sayisi</div>
+                        <div class="text-muted">Tur Sayısı</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-orange panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <img src="~/content/img/iconlar/otel.png" />
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">@ViewBag.otel_sayisi</div>
+                        <div class="text-muted">Otel Sayısı</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-teal panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <img src="~/content/img/iconlar/otobus.png" />
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">@ViewBag.otobus_sayisi</div>
+                        <div class="text-muted">Otobüs sayısı</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-red panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <img src="~/content/img/iconlar/ucak.png" />
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">@ViewBag.ucak_sayisi</div>
+                        <div class="text-muted">Uçak Sayısı</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-teal panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <img src="~/content/img/iconlar/tren.png" />
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">@ViewBag.tren_sayisi</div>
+                        <div class="text-muted">Tren Sayısı</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-blue panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <img src="~/content/img/iconlar/transfer_.png" width="60" height="60" />
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">@ViewBag.transfer_sayisi</div>
+                        <div class="text-muted">Transfer Sayısı</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!--/.row-->
+    @{
+        List<TKalkis> nereden = (List<TKalkis>)ViewData["tkalkis"];
+        List<TVaris> nereye = (List<TVaris>)ViewData["tvaris"];
+    }
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Mevcut Transferler</div>
+                <div class="panel-body">
+                    
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-field="state" data-checkbox="true">Nereden</th>
+                                    <th data-field="id" data-sortable="true">Nereye</th>
+                                    <th data-field="name" data-sortable="true">Tam adres</th>
+                                    <th data-field="price" data-sortable="true">Ad Soyad</th>
+                                    <th data-field="price" data-sortable="true">Tel</th>
+                                    <th data-field="price" data-sortable="true">Durum</th>
+                                    <th data-field="price" data-sortable="true">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewData["transfer"] != null)
+                                {
+                                    foreach (var item in (List<Transfer>)ViewData["transfer"])
+                                    {
+                                        <tr>
+
+                                            <th data-field="state" data-checkbox="true">
+                                                @{ TKalkis k = nereden.Where(x => x.id == item.nerden).Take(1).FirstOrDefault();}
+                                                @if (k != null)
+                                                {
+                                                    <text> @k.kalkisyer </text>
+                                                }
+                                            </th>
+                                            <th data-field="id" data-sortable="true">
+                                                @{ TVaris v = nereye.Where(x => x.id == item.nereye).Take(1).FirstOrDefault();}
+                                                @if (v != null)
+                                                {
+                                                    <text> @v.varisyer </text>
+                                                }
+                                            </th>
+                                            <th data-field="name" data-sortable="true">@item.tamadres</th>
+                                            <th data-field="price" data-sortable="true">@item.adsoyad</th>
+                                            <th data-field="price" data-sortable="true">@item.tel</th>
+                                            <th class="renk_@item.durum" data-field="price" data-sortable="true">@item.durum</th>
+                                            <th>
+                                                <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                <div class="evethayir" id="ehackapa_@item.id">
+                                                    <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                    <div class="uyaripenceresisecenek">
+                                                        <div class="evet"><a href="@Url.RouteUrl("ytransfersil",new { id=item.id })"> EVET</a> </div>
+                                                        <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+                                                </script>
+
+                                                <div style="float:left; cursor:pointer;"><a href="@Url.Action("YTDurum",new {id=item.id,durum="kapalı" })"><svg class="glyph stroked checkmark" width="40" height="40"><use xlink:href="#stroked-checkmark" /></svg></a></div>
+                                                <div style="float:left; cursor:pointer;"><a href="@Url.Action("YTDurum",new {id=item.id,durum="beklemede" })"><svg class="glyph stroked eye" width="40" height="40"><use xlink:href="#stroked-eye" /></svg></a></div>
+                                                <div style="float:left; cursor:pointer;"><a href="@Url.Action("YTDurum",new {id=item.id,durum="acik" })"><svg class="glyph stroked plus sign" width="40" height="40"><use xlink:href="#stroked-plus-sign" /></svg></a></div>
+                                            </th>
+                                        </tr>
+                                                        }
+                                                    }
+
+                            </tbody>
+                        </table>
+                        <script src="~/content/js/jquery.min.js"></script>
+                        <style>
+                            .renk_acik {
+                                background-color: white;
+                            }
+
+                            .renk_beklemede {
+                                background-color: white;
+                            }
+
+                            .renk_kapalı {
+                                background-color: white;
+                            }
+                        </style>
+                        <script>
+                            $(document).ready(function () {
+                                $(".renk_acik").css({ "background-color": "#009900" });
+                                $(".renk_beklemede").css({ "background-color": "#FFCC00" });
+                                $(".renk_kapalı").css({ "background-color": "#FF3300" });
+
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+
+   <!-- <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>New Orders</h4>
+                    <div class="easypiechart" id="easypiechart-blue" data-percent="100">
+                        <span class="percent">92%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Comments</h4>
+                    <div class="easypiechart" id="easypiechart-orange" data-percent="65">
+                        <span class="percent">65%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>New Users</h4>
+                    <div class="easypiechart" id="easypiechart-teal" data-percent="56">
+                        <span class="percent">56%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Visitors</h4>
+                    <div class="easypiechart" id="easypiechart-red" data-percent="27">
+                        <span class="percent">27%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default chat">
+                <div class="panel-heading" id="accordion"><svg class="glyph stroked two-messages"><use xlink:href="#stroked-two-messages"></use></svg>Sizinle İletişime Geçenler</div>
+                <div class="panel-body">
+                    <ul>
+                        @foreach (Iletisim item in (List<Iletisim>)ViewData["iletisim"])
+                        {
+                            <li class="left clearfix tekmesaj" style="cursor:pointer;" id="mesaj_id_@item.id" onclick="id_ver('@item.id','@item.email.Trim()');">
+                                <span class="chat-img pull-left">
+                                    <!--resim alanı-->
+                                </span>
+                                <div class="chat-body clearfix">
+                                    <div class="header">
+                                        <strong class="primary-font">@item.adisoyadi</strong> <small class="text-muted">@item.tarih</small>
+                                    </div>
+                                    <p>
+                                       @item.mesaj;
+                                        <br />
+                                        Eposta: @item.email - Tel: @item.tel
+                                    </p>
+                                    <div style="float:right;">
+                                        @using (Html.BeginForm("YMesaj_Goruldu", "Yonetim", FormMethod.Post))
+                                        {
+                                            <input type="hidden" value="@item.id" name="iletisim_id" />
+                                            <input type="submit" value="Görüldü" class="btn btn-success btn-md" />
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        
+                    </ul>
+                </div>
+                <script>
+                    function id_ver(id, mail_adresi) {
+                        document.getElementById("mail_adresi").value = mail_adresi;
+                        $(".tekmesaj").css({"backgroundColor":"white"});
+                        document.getElementById("mesaj_id_" + id).style.backgroundColor = "rgb(193, 193, 193)";
+                    }
+                </script>
+                <div class="panel-footer">
+                    @using (Html.BeginForm("YMesaj_Gonder", "Yonetim", FormMethod.Post))
+                    {
+                        <div class="input-group">
+                            <input type="hidden" id="mail_adresi" name="kime" />
+                            <textarea id="btn-input" rows="5" name="mesaj" class="form-control input-md" placeholder="Cevapıbız Nedir?">
+
+                            </textarea>
+                            <input id="btn-input" type="password" name="emailsifresi" class="form-control input-md" placeholder="Yonetici mail sifresi" />
+                            <span class="input-group-btn">
+                                <input type="submit" class="btn btn-success btn-md" id="btn-chat" value="Gönder">
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div><!--/.col-->
+
+        <!--<div class="col-md-4">
+
+            <div class="panel panel-blue">
+                <div class="panel-heading dark-overlay"><svg class="glyph stroked clipboard-with-paper"><use xlink:href="#stroked-clipboard-with-paper"></use></svg>Yaklaşan Tur Listesi</div>
+                <div class="panel-body">
+                    <ul class="todo-list">
+                        <li class="todo-list-item">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox">Yaklaşan Tur Listesi</label>
+                            </div>
+                            <div class="pull-right action-buttons">
+                                <a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
+                                <a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
+                                <a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
+                            </div>
+                        </li>
+                        <li class="todo-list-item">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox">Update Basecamp</label>
+                            </div>
+                            <div class="pull-right action-buttons">
+                                <a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
+                                <a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
+                                <a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
+                            </div>
+                        </li>
+                        <li class="todo-list-item">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox">Send email to Jane</label>
+                            </div>
+                            <div class="pull-right action-buttons">
+                                <a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
+                                <a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
+                                <a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
+                            </div>
+                        </li>
+                        <li class="todo-list-item">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox">Drink coffee</label>
+                            </div>
+                            <div class="pull-right action-buttons">
+                                <a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
+                                <a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
+                                <a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
+                            </div>
+                        </li>
+                        <li class="todo-list-item">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox">Do some work</label>
+                            </div>
+                            <div class="pull-right action-buttons">
+                                <a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
+                                <a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
+                                <a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
+                            </div>
+                        </li>
+                        <li class="todo-list-item">
+                            <div class="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <label for="checkbox">Tidy up workspace</label>
+                            </div>
+                            <div class="pull-right action-buttons">
+                                <a href="#"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
+                                <a href="#" class="flag"><svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg></a>
+                                <a href="#" class="trash"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"></use></svg></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-md" placeholder="Add new task" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-md" id="btn-todo">Add</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+    </div><!--/.row-->
+</div>
+
+@{Html.RenderAction("YMesaj");}

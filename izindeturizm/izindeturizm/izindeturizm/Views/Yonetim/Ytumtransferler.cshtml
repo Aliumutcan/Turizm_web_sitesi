@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Tum Transferler";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+@using izindeturizm.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<Transfer>
+
+
+@{
+    List<TKalkis> nereden = (List<TKalkis>)ViewData["tkalkis"];
+    List<TVaris> nereye = (List<TVaris>)ViewData["tvaris"];
+}
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active"><a href="@Url.RouteUrl("ytransfer")">Nereden-Nereye-Fiyat</a></li>
+            <li><a href="@Url.HttpRouteUrl("ytumtransferler",new {sayfa=1 })">Tum Transferler</a></li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Transfer tablosu</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-field="state" data-checkbox="true">Nereden</th>
+                                    <th data-field="id" data-sortable="true">Nereye</th>
+                                    <th data-field="name" data-sortable="true">Tam adres</th>
+                                    <th data-field="price" data-sortable="true">Ad Soyad</th>
+                                    <th data-field="price" data-sortable="true">Tel</th>
+                                    <th data-field="price" data-sortable="true">Durum</th>
+                                    <th data-field="price" data-sortable="true">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+
+                                            <th data-field="state" data-checkbox="true">
+                                                @{ TKalkis k = nereden.Where(x => x.id == item.nerden).Take(1).FirstOrDefault();}
+                                                @if (k != null)
+                                                {
+                                                    <text> @k.kalkisyer </text>
+                                                }
+                                            </th>
+                                            <th data-field="id" data-sortable="true">
+                                                @{ TVaris v = nereye.Where(x => x.id == item.nereye).Take(1).FirstOrDefault();}
+                                                @if (v != null)
+                                                {
+                                                    <text> @v.varisyer </text>
+                                                }
+                                            </th>
+                                            <th data-field="name" data-sortable="true">@item.tamadres</th>
+                                            <th data-field="price" data-sortable="true">@item.adsoyad</th>
+                                            <th data-field="price" data-sortable="true">@item.tel</th>
+                                            <th class="renk_@item.durum" data-field="price" data-sortable="true">
+                                                @item.durum
+                                            </th>
+                                            <th>
+                                                <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                <div class="evethayir" id="ehackapa_@item.id">
+                                                    <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                    <div class="uyaripenceresisecenek">
+                                                        <div class="evet"><a href="@Url.RouteUrl("ytransfersil",new { id=item.id })"> EVET</a> </div>
+                                                        <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+                                                </script>
+
+                                                <div style="float:left; cursor:pointer;"><a href="@Url.Action("YTDurum",new {id=item.id,durum="kapalı" })"><svg class="glyph stroked checkmark" width="40" height="40"><use xlink:href="#stroked-checkmark" /></svg></a></div>
+                                                <div style="float:left; cursor:pointer;"><a href="@Url.Action("YTDurum",new {id=item.id,durum="beklemede" })"><svg class="glyph stroked eye" width="40" height="40"><use xlink:href="#stroked-eye" /></svg></a></div>
+                                                <div style="float:left; cursor:pointer;"><a href="@Url.Action("YTDurum",new {id=item.id,durum="acik" })"><svg class="glyph stroked plus sign" width="40" height="40"><use xlink:href="#stroked-plus-sign" /></svg></a></div>
+                                            </th>
+                                        </tr>
+                                                        }
+                                                    }
+
+                            </tbody>
+                        </table>
+                        <script src="~/content/js/jquery.min.js"></script>
+                        <style>
+                            .renk_acik {
+                                background-color: white;
+                            }
+
+                            .renk_beklemede {
+                                background-color: white;
+                            }
+
+                            .renk_kapalı {
+                                background-color: white;
+                            }
+                        </style>
+                        <script>
+                            $(document).ready(function () {
+                                $(".renk_acik").css({ "background-color": "#009900" });
+                                $(".renk_beklemede").css({ "background-color": "#FFCC00" });
+                                $(".renk_kapalı").css({ "background-color": "#FF3300" });
+
+                            });
+                        </script>
+                        @if (Model != null)
+                        {
+                            <div class="pagedList">
+                                @Html.PagedListPager(Model, sayfa => Url.Action("YTumTurlar", new { sayfa }), PagedListRenderOptions.PageNumbersOnly)
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+    </div>
+</div>

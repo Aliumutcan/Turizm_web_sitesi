@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+@using izindeturizm.Models;
+@using System.Web.Security;
+@model List<Menu>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active"><a href="#">Menu İşlemleri</a></li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Yeni Menü ekle veya güncelle</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("YMenu", "Yonetim", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <label>Menü Adı</label>
+                                <input class="form-control" name="adi" maxlength="50" id="adi" placeholder="Menu adı">
+
+                            </div>
+                                <div class="form-group">
+                                    <label>İnglizce Menü Adı</label>
+                                    <input class="form-control" name="ingadi" id="ingadi" maxlength="50" placeholder="Menu adı">
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Üst Menüsünü Secin</label>
+                                    <select name="ustid" id="menusec" class="form-control selected">
+                                        <option value="-1">Bir üst menü secin</option>
+                                        @if (Model != null)
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <option value="@item.id">@item.adi</option>
+                                            }
+                                        }
+                                    </select>
+                                    <input type="hidden" class="form-control" name="id" id="menuid" maxlength="50">
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="form-control" id="gonder" value="Tamam">
+                                </div>
+                        }
+                    </div>
+                </div>
+            </div><!-- /.col-->
+        </div><!-- /.row -->
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tüm Menular</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Menu</th>
+                                    <th>Üst menusu</th>
+                                    <th>İŞLEMLER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <th>@item.adi</th>
+                                            @if (item.ustid > 0)
+                                            {
+                                                foreach (var item2 in Model)
+                                                {
+                                                    if (item2.id == item.ustid)
+                                                    {
+                                                        <th>
+                                                            @item2.adi
+                                                        </th>
+                                                    }
+
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <th>YOK</th>
+                                            }
+
+
+                                            <th>
+                                                <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                <div class="evethayir" id="ehackapa_@item.id">
+                                                    <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                    <div class="uyaripenceresisecenek">
+                                                        <div class="evet"><a href="@Url.RouteUrl("ymenusil",new { id=item.id })"> EVET</a> </div>
+                                                        <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                    </div>
+                                                </div>
+
+                                                <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+
+                                                    function guncelle(id, adi, ingadi, ustid) {
+                                                        if (ustid==-1) {
+                                                            ustid = 0;
+                                                        }
+                                                        document.getElementById("menusec").selectedIndex = ustid;
+                                                        document.getElementById("adi").value = adi;
+                                                        document.getElementById("ingadi").value = ingadi;
+                                                        document.getElementById("menuid").value = id;
+                                                        document.getElementById("gonder").value = "Güncelle";
+                                                    }
+                                                </script>
+
+                                                <div style="float:left; cursor:pointer;" onclick="guncelle('@item.id','@item.adi','@item.ingadi','@item.ustid');"><svg class="glyph stroked pencil" width="40" height="40"><use xlink:href="#stroked-pencil" /></svg></div>
+                                            </th>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <text> Hiç bir ver bulunamadı</text>
+                                }
+                            </tbody>
+                        </table>
+                        <script>
+                            var idtut = -1;
+                            function goster(id) {
+                                gizle(idtut);
+                                document.getElementById("dialog_" + id).style.display = "block";
+                                document.getElementById("siyahkaplama").style.display = "block";
+                                idtut = id;
+                            }
+                            function gizle(id) {
+                                if (id > -1) {
+                                    document.getElementById("dialog_" + id).style.display = "none";
+                                    document.getElementById("siyahkaplama").style.display = "none";
+                                }
+                            }
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@{Html.RenderAction("YMesaj");}
+

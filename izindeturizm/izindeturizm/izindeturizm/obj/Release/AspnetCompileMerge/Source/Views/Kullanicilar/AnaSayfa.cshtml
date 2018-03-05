@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "AnaSayfa";
+    Layout = "~/Views/Kullanicilar.cshtml";
+}
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+<!-- banner-bottom -->
+<div class="banner-bottom">
+    <!-- container -->
+    <div class="container">
+        @{List<Turlar> gelenturlar = (List<Turlar>)ViewData["turlar"]; }
+        @if (gelenturlar.Count > 0)
+        {
+            <div><h2>Turlarımız</h2> <div style="color:red; float:right;"><a href="@Url.RouteUrl("tumturlar", new { sayfa = 1 })">Tümünü Gör</a></div></div>
+            <div class="banner-bottom-grids">
+
+                @foreach (var turlar in gelenturlar)
+                {
+                    <div class="col-md-4 banner-bottom-grid">
+                        <div class="banner-bottom-middle">
+                            <a href="@Url.RouteUrl("turdetay", new { id = turlar.id, nere = "tur", baslik = turlar.baslik.routeduzelt() })">
+                                @foreach (var galeri in (List<Galeri>)ViewData["galeri"])
+                        {
+                            if (galeri.anaID == turlar.id && galeri.nereicin == "turlar")
+                            {
+                        <img src="@galeri.resimyol" alt="" height="200" />
+
+                                break;
+                            }
+                        }
+
+                                <div class="destinations-grid-info tours">
+                                    <h5>@turlar.baslik</h5>
+                                    <p>@turlar.aciklama</p>
+                                    <p class="b-period">Başlama Tarihi: @turlar.turbaslamatarihi.Value.ToString("dd-MMM-yyyy") </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+
+                <div class="clearfix"> </div>
+            </div>
+        }
+        <br />
+        @{List<Firsatlar> gelenfirsatlar = (List<Firsatlar>)ViewData["firsatlar"]; }
+        @if (gelenfirsatlar.Count > 0)
+        {
+            <div><h2>Fırsatlar</h2> <div style="color:red; float:right;"><a href="@Url.RouteUrl("tumfirsatlar",new {sayfa=1 })">Tümünü Gör</a></div></div>
+            <div class="banner-bottom-grids">
+                @foreach (var firsatlar in gelenfirsatlar)
+                {
+                <div class="col-md-4 banner-bottom-grid">
+                    <div class="banner-bottom-middle">
+                        <a href="#">
+                            @foreach (var galeri2 in (List<Galeri>)ViewData["galeri"])
+                                {
+                                    if (galeri2.anaID == firsatlar.id && galeri2.nereicin == "firsat")
+                                    {
+                                <img src="@galeri2.resimyol" alt="" />
+                                        break;
+                                    }
+                                }
+
+                            <div class="destinations-grid-info tours">
+                                <h5>@firsatlar.baslik</h5>
+                                <p>@firsatlar.aciklama</p>
+                                <!--<p class="b-period">Fırsat bitim tarihi:  </p>-->
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                }
+
+                <div class="clearfix"> </div>
+            </div>
+        }
+
+    </div>
+    <!-- //container -->
+</div>
+<!-- //banner-bottom -->

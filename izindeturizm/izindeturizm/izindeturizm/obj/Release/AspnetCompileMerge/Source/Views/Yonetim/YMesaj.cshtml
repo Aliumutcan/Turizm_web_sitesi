@@ -1,0 +1,51 @@
+﻿
+@if (ViewBag.mesaj != null && ViewBag.mesajderecesi != null)
+{
+    <div id="hatamesajlari" onclick="kapa();" style="position:fixed;top:40%;left:30%; cursor:pointer;">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>İşlem Sonucunuz</h2>
+                @*<div class="alert bg-primary" role="alert">
+                        <svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg> Welcome to the admin dashboard panel bootstrap template <a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>*@
+                @if (ViewBag.mesajderecesi == 0)
+                {
+                    <div class="alert bg-success" role="alert">
+                        <svg class="glyph stroked checkmark"><use xlink:href="#stroked-checkmark"></use></svg>
+                        @ViewBag.mesaj
+                        <a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                }
+                else if (ViewBag.mesajderecesi == 1)
+                {
+                    <div class="alert bg-warning" role="alert">
+                        <svg class="glyph stroked flag"><use xlink:href="#stroked-flag"></use></svg>
+                        @ViewBag.mesaj
+                        <a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                }
+                else if (ViewBag.mesajderecesi == 2)
+                {
+                    <div class="alert bg-danger" role="alert">
+                        <svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg>
+                        @ViewBag.mesaj
+                        <a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+
+
+        <script>
+        function kapa() {
+            document.getElementById("hatamesajlari").style.display = "none";
+        }
+        </script>
+    </div>
+
+
+
+}

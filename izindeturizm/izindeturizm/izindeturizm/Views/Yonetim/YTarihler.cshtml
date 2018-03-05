@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "YTarihler";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+@using izindeturizm.Models;
+@model List<Urun_Tarihleri>
+
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active"><a href="@Url.RouteUrl("yturekle")">Yeni Tur Ekle</a></li>
+            <li><a href="@Url.RouteUrl("ytumturlar",new {sayfa=1 })">Tum Turlar</a></li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Yeni Tur Ekle</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Ajax.BeginRouteForm("yturtarihleri", new { turid = ViewBag.turid }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "eklenenler" }))
+                        {
+                            <div class="form-group">
+                                <div style="width:45%; float:left;">
+                                    <label>Gidiş Tarihi</label>
+                                    <input type="date" class="form-control" name="cikis_tarihi" maxlength="100" placeholder="">
+                                    <label>Dönüş Tarihi</label>
+                                    <input type="date" class="form-control" name="donus_tarihi" maxlength="100" placeholder="">
+                                    <label>Tur Fiyatı</label>
+                                    <input type="text" class="form-control" name="turfiyat" maxlength="9" placeholder="">
+                                    <label>Para Birimi</label>
+                                    <select class="form-control" name="parabirimi">
+                                        <option value="TL">TL</option>
+                                        <option value="$">Dolar</option>
+                                        <option value="€">Euro</option>
+                                    </select>
+                                </div>
+                                <div style="width:45%; float:right;">
+                                    <label>Bebek Fiyat</label>
+                                    <input type="text" class="form-control" name="bebekfiyat" maxlength="9" placeholder="">
+                                    <div style="width:50%;float:left;">
+                                        <label>Bebek Küçük Yaş</label>
+                                        <input type="text" class="form-control" name="bebekyas1" maxlength="4" placeholder="">
+                                    </div>
+                                    <div style="width:50%;float:right;">
+                                        <label>Bebek Büyük Yaş</label>
+                                        <input type="text" class="form-control" name="bebekyas2" maxlength="4" placeholder="">
+                                    </div>
+                                    <label>Coçuk Fiyat</label>
+                                    <input type="text" class="form-control" name="cocukfiyat" maxlength="9" placeholder="">
+                                    <div style="width:50%;float:left;">
+                                        <label>Coçuk Küçük Yaş</label>
+                                        <input type="text" class="form-control" name="cocukyas1" maxlength="4" placeholder="">
+                                    </div>
+                                    <div style="width:50%;float:right;">
+                                        <label>Coçuk Büyük Yaş</label>
+                                        <input type="text" class="form-control" name="cocukyas2" maxlength="4" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="form-control" value="Ekle">
+
+                            </div>
+
+                        }
+                        <div class="form-group">
+                            <input type="hidden" value="@ViewBag.turid" name="turid" />
+                            @*<a href="@Url.RouteUrl("yturotelekle",new {turid=ViewBag.turid })"><input type="submit" class="form-control" value="Bir sonraki adıma geç"></a>*@
+                            <a href="@Url.RouteUrl("yanasayfa")"><input type="submit" class="form-control" value="Tur Ekleme İşlemini Tamamla" /></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- /.col-->
+        </div><!-- /.row -->
+    </div><!--/.main-->
+
+
+    <div class="row" id="eklenenler">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tüm Tarihler</div>
+                <div class="panel-body">
+                    @if (Model != null)
+                    {
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Gidiş Tarihi</th>
+                                        <th>Dönüş Tarihi</th>
+                                        <th>Tur Fiyatlar</th>
+                                        <th>Yaş Aralıkları</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <th>@item.cikis_tarihi</th>
+                                                <th>@item.donus_tarihi</th>
+                                                <th>Tur Fiyatı: @item.turfiyat</th>
+                                                <th>
+                                                    <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                    <div class="evethayir" id="ehackapa_@item.id">
+                                                        <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                        <div class="uyaripenceresisecenek">
+                                                            <div class="evet"><a href="@Url.RouteUrl("ytarihsil",new { id=item.id })"> EVET</a> </div>
+                                                            <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <script>
+                                                        function ehac(id) {
+                                                            document.getElementById("ehackapa_" + id).style.display = "block";
+                                                            document.getElementById("siyahkaplama").style.display = "block";
+                                                        }
+                                                        function ehkapa(id) {
+                                                            document.getElementById("ehackapa_" + id).style.display = "none";
+                                                            document.getElementById("siyahkaplama").style.display = "none";
+                                                        }
+                                                    </script>
+                                                </th>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <text>Hiç bir ver bulunamadı</text>
+                                    }
+                                </tbody>
+                            </table>
+                            <script>
+                                var idtut = -1;
+                                function goster(id) {
+                                    gizle(idtut);
+                                    document.getElementById("dialog_" + id).style.display = "block";
+                                    document.getElementById("siyahkaplama").style.display = "block";
+                                    idtut = id;
+                                }
+                                function gizle(id) {
+                                    if (id > -1) {
+                                        document.getElementById("dialog_" + id).style.display = "none";
+                                        document.getElementById("siyahkaplama").style.display = "none";
+                                    }
+                                }
+                            </script>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@{Html.RenderAction("YMesaj");}

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "menudanturgetir";
+    //Layout = "~/Views/Kullanicilar.cshtml";
+    Layout = "~/Views/detaykullanici.cshtml";
+}
+
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@using PagedList;
+@using PagedList.Mvc;
+@model List<Urunler>
+
+<!-- banner-bottom -->
+<div class="banner-bottom">
+    <!-- container -->
+    <div class="container">
+        @if (Model != null && Model.Count>0)
+        {
+            Html.RenderPartial("Parital_Urunler", Model.ToPagedList(1, Model.Count));
+        }
+        else
+        {
+            <text>Hiç bir tur bulunamadı</text>
+        }
+
+        @if (Model!=null && Model.Count>0)
+        {
+            <div style="margin-left:auto;margin-right:auto;width:120px;height:50px;">
+                <a href="@Url.RouteUrl("menudangetir",new {sayfa=Convert.ToInt32(ViewContext.RouteData.Values["sayfa"])-1,menuid= Convert.ToInt32(ViewContext.RouteData.Values["menuid"]), menu=ViewContext.RouteData.Values["menu"] })"><div style="width:40px; height:45px; float: left; margin: 10px; background-image: url('../../content/img/iconlar/sol.png'); background-size:cover; background-repeat:no-repeat;">  </div></a>
+                <a href="@Url.RouteUrl("menudangetir",new {sayfa=Convert.ToInt32(ViewContext.RouteData.Values["sayfa"])+1,menuid= Convert.ToInt32(ViewContext.RouteData.Values["menuid"]), menu=ViewContext.RouteData.Values["menu"] })"><div style="width:40px; height:45px; float: left; margin: 10px; background-image: url('../../content/img/iconlar/sag.png'); background-size:cover; background-repeat:no-repeat;">  </div></a>
+            </div>
+        }
+    @*@if (Model != null)
+                {
+                <div class="pagedList">
+                    @Html.PagedListPager(Model, sayfa => Url.Action("tumturlar", new { sayfa }), PagedListRenderOptions.PageNumbersOnly)
+                </div>
+            }*@
+    </div>
+    <!-- //container -->
+</div>
+<!-- //banner-bottom -->

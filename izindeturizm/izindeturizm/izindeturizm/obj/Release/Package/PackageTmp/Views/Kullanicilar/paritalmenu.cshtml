@@ -1,0 +1,74 @@
+﻿<!--header-->
+
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@model List<Menu>
+
+<div class="header">
+    <div class="container">
+        <div class="header-grids">
+            <div class="logo">
+                <h1><a href="@Url.RouteUrl("kanasayfa")"><img src="~/content/img/logo.PNG" width="370" height="120" /></a></h1>
+            </div>
+            <!--navbar-header-->
+            <!--<div class="header-dropdown">
+                <div class="emergency-grid">
+                    <ul>
+                        <li>Telefon numarası : </li>
+                        <li class="call">+90 535 629 19 99</li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>-->
+            <div class="clearfix"> </div>
+        </div>
+
+        <div class="nav-top">
+            <div class="top-nav">
+                <span class="menu"><img src="~/content/img/iconlar/menu.png" alt="" /></span>
+                <ul class="nav1">
+                    <li><a href="@Url.RouteUrl("kanasayfa")">Ana Sayfa</a></li>
+                    @Html.Raw(menugetir.menuduzelt(-1, Model))
+                    <li><a href="@Url.RouteUrl("iletisim")">İletişim</a></li>
+                </ul>
+                <div class="clearfix"> </div>
+
+
+                <!-- script-for-menu -->
+                <script>
+
+                    $("span.menu").click(function () {
+                        $("ul.nav1").slideToggle(300, function () {
+                            // Animation complete.
+                        });
+                    });
+
+                </script>
+                <!-- /script-for-menu -->
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script>
+    function menu_ac(id){
+        document.getElementById("menu_"+id).style.display = "block";
+    }
+    function menu_kapa(id) {
+        document.getElementById("menu_" + id).style.display = "none";
+    }
+</script>
+<style>
+    .menu-acilir{
+        position:absolute;
+        margin-left:-10px;
+        width:200px;
+        background-color:white;
+
+    }
+    .menu-acilir ul{
+        border:none;
+        margin:10px;
+    }
+</style>

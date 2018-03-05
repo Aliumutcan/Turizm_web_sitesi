@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Urun Tarihleri";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active"><a href="@Url.RouteUrl("yturekle")">Yeni Tur Ekle</a></li>
+            <li><a href="@Url.RouteUrl("ytumturlar",new {sayfa=1 })">Tum Turlar</a></li>
+        </ol>
+    </div><!--/.row-->
+    @using (Ajax.BeginRouteForm("yturtarihleri", new { turid = ViewBag.turid }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "eklenenler" }))
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Yeni Tur Paketi Ekle</div>
+                    <div class="panel-body">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label>Gidiş Tarihi</label>
+                                <input type="text" class="form-control" name="tanim" maxlength="100" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label>Dönüş Tarihi</label>
+                                <input type="date" class="form-control" name="donuştarihi" maxlength="100" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="form-control" value="Ekle">
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="submit" class="form-control" value="Bir sonraki adıma geç">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.col-->
+            </div><!-- /.row -->
+        </div><!--/.main-->
+        <div class="row" id="eklenenler">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Tüm Tarihler</div>
+                    <div class="panel-body">
+                        @if (Model != null)
+                        {
+                            <div class="table-responsive">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>CIKIŞ TARİHİ</th>
+                                            <th>DÖNÜŞ TARİHİ</th>
+                                            <th>iŞLEMLER</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model != null)
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <th>@item.cikistarihi</th>
+                                                    <th>@item.donuştarihi</th>
+                                                    <th>
+                                                        <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                        <div class="evethayir" id="ehackapa_@item.id">
+                                                            <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                            <div class="uyaripenceresisecenek">
+                                                                <div class="evet"><a href="@Url.RouteUrl("ytarihsil",new { id=item.id })"> EVET</a> </div>
+                                                                <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <script>
+                                                        function ehac(id) {
+                                                            document.getElementById("ehackapa_" + id).style.display = "block";
+                                                            document.getElementById("siyahkaplama").style.display = "block";
+                                                        }
+                                                        function ehkapa(id) {
+                                                            document.getElementById("ehackapa_" + id).style.display = "none";
+                                                            document.getElementById("siyahkaplama").style.display = "none";
+                                                        }
+                                                        </script>
+                                                    </th>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <text>Hiç bir ver bulunamadı</text>
+                                        }
+                                    </tbody>
+                                </table>
+                                <script>
+                                var idtut = -1;
+                                function goster(id) {
+                                    gizle(idtut);
+                                    document.getElementById("dialog_" + id).style.display = "block";
+                                    document.getElementById("siyahkaplama").style.display = "block";
+                                    idtut = id;
+                                }
+                                function gizle(id) {
+                                    if (id > -1) {
+                                        document.getElementById("dialog_" + id).style.display = "none";
+                                        document.getElementById("siyahkaplama").style.display = "none";
+                                    }
+                                }
+                                </script>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@{Html.RenderAction("YMesaj");}
+

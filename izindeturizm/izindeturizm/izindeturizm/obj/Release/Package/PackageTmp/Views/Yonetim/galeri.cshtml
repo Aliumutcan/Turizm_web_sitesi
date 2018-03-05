@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Galeri işlemleri";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+@using izindeturizm.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList<Galeri>
+
+
+
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Galeri resim ekle</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("galeri", "Yonetim", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="form-group">
+                                <label>Link</label>
+                                <input type="text" class="form-control" name="link" placeholder="link" />
+                            </div>
+                            <div class="form-group">
+                                <label>Acıklama</label>
+                                <input class="form-control" name="aciklama" placeholder="Acıklama"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Resimler</label>
+                                <input type="file" class="form-control" name="resim"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control" value="Gönder"/>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Galeri tablosu</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-field="state" data-checkbox="true">Resim</th>
+                                    <th data-field="id" data-sortable="true">Link</th>
+                                    <th data-field="name" data-sortable="true">Acıklama</th>
+                                    <th data-field="price" data-sortable="true">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+
+                                            <th data-field="name" data-sortable="true"><img src="@item.resimyol.Replace("C:\\Inetpub\\vhosts\\","http://").Replace("\\httpdocs\\","/").Replace('\\','/').Replace("..","https://izindeturizm.com")" width="200" height="200" /></th>
+                                            <th data-field="price" data-sortable="true">@item.link</th>
+                                            <th data-field="price" data-sortable="true">@item.aciklama</th>
+                                            <th>
+                                                <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                <div class="evethayir" id="ehackapa_@item.id">
+                                                    <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                    <div class="uyaripenceresisecenek">
+                                                        <div class="evet"><a href="@Url.RouteUrl("ygalerisil",new { id=item.id })"> EVET</a> </div>
+                                                        <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_" + id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_" + id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+                                                </script>
+
+                                            </th>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                        @if (Model != null)
+                        {
+                            <div class="pagedList">
+                                @Html.PagedListPager(Model, sayfa => Url.Action("YTumTurlar", new { sayfa }), PagedListRenderOptions.PageNumbersOnly)
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div><!--/.row-->
+    </div>
+</div>
+@{Html.RenderAction("YMesaj");}

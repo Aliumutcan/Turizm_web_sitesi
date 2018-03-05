@@ -1,0 +1,401 @@
+﻿
+@{
+    ViewBag.Title = "Saltur Rezarvasyon";
+    Layout = "~/Views/detaykullanici.cshtml";
+}
+@using izindeturizm.Models;
+@using izindeturizm.ServiceReference1
+@using (Html.BeginForm("TurRezarvasyon", "Kullanicilar", FormMethod.Post))
+{
+    <script src="~/content/js/genel.js"></script>
+    <input type="hidden" name="urun_ID" id="urun_id" value="@ViewContext.RouteData.Values["id"]" />
+    <div class="banner-bottom">
+        <div class="container">
+            <style>
+                .secenekler ul li {
+                    float: left;
+                    margin: 10px;
+                    list-style-type: none;
+                }
+            </style>
+            <div class="row secenekler" style="float:none;">
+                <div><div style="color:red; float:left;">*</div> Bebekler için koltuk istenmıyor ise cocuk olarak secmeyin(sadece yurt içi turlarda).</div>
+                <ul>
+                    @if (ViewData["saltur"] != null)
+                    {
+                        List<salturturlistesi> turlistesi = (List<salturturlistesi>)ViewData["saltur"];
+                        <li>
+                            <label>Tur Tarihi</label>
+                            <input type="hidden" id="tur_fiyati" value="@turlistesi[0].TurFiyati" />
+                            <input type="hidden" id="dolar" value="@turlistesi[0].Dolar" />
+                            <input type="hidden" id="euro" value="@turlistesi[0].Euro" />
+                            <input type="hidden" class="turkategori" value="@turlistesi[0].TurKategori" />
+                            <select name="konaklama_tarih_ID" class="form-control" id="tarihler">
+                                <option value="0">Tur Tarihleri</option>
+                                @foreach (var item in turlistesi)
+                                {
+                                    <option value="@String.Format("{0:dd/MM/yyyy}", item.turbaslangictarihi.Value.Date)">@String.Format("{0:dd/MM/yyyy}", item.turbaslangictarihi.Value.Date)</option>
+                                }
+                            </select>
+                            @for (int i = 0; i < turlistesi.Count(); i++)
+                            {
+                                <input type="hidden" id="bebekfiyat_@String.Format("{0:dd/MM/yyyy}", turlistesi[i].turbaslangictarihi.Value.Date)" value="@turlistesi[i].BebekFiyati" />
+                                <input type="hidden" id="bebekyas1_@String.Format("{0:dd/MM/yyyy}", turlistesi[i].turbaslangictarihi.Value.Date)" value="@turlistesi[i].BebekYas1" />
+                                <input type="hidden" id="bebekyas2_@String.Format("{0:dd/MM/yyyy}", turlistesi[i].turbaslangictarihi.Value.Date)" value="@turlistesi[i].BebekYas2" />
+                                <input type="hidden" id="cocukfiyat_@String.Format("{0:dd/MM/yyyy}", turlistesi[i].turbaslangictarihi.Value.Date)" value="@turlistesi[i].CocukFiyati" />
+                                <input type="hidden" id="cocukyas1_@String.Format("{0:dd/MM/yyyy}", turlistesi[i].turbaslangictarihi.Value.Date)" value="@turlistesi[i].CocukYas1" />
+                                <input type="hidden" id="cocukyas2_@String.Format("{0:dd/MM/yyyy}", turlistesi[i].turbaslangictarihi.Value.Date)" value="@turlistesi[i].CocukYas2" />
+
+                            }
+                            @for (int a = 0; a < turlistesi[0].turfiyatlari.Count(); a++)
+                            {
+                                string deger = "";
+                                if (turlistesi[0].turfiyatlari[a].UcretTipi.ToLower().IndexOf("fark") >= 0) { deger = "fark"; }
+                                else if (turlistesi[0].turfiyatlari[a].UcretTipi.ToLower().IndexOf("üç") >= 0) { deger = "uc"; }
+                                else if (turlistesi[0].turfiyatlari[a].UcretTipi.ToLower().IndexOf("kişi başı") >= 0) { deger = "kişi başi"; }
+
+                                <input type="hidden" id="@deger @String.Format("{0:dd/MM/yyyy}",turlistesi[0].turfiyatlari[a].turbaslangictarihi)" value="@turlistesi[0].turfiyatlari[a].Ucret" />
+                            }
+                        </li>
+                    }
+                    <li style="" >
+                        <label>Yetişkin sayısı</label>
+                        <select class="form-control" name="yetiskinsayisi" id="yetiskinsayisi">
+                            <option value="0">Yetişkin sayısı secin</option>
+                            <option value="1">1 kişi(iki kişilik bir oda)</option>
+                            <option value="2">2 kişi(iki kişilik bir oda)</option>
+                            <option value="3">3 kişi(üç kişilik bir oda)</option>
+                            <option value="4">4 kişi(iki kişilik iki oda)</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Coçuk sayısı</label>
+                        <select class="form-control" name="cocuksayisi" id="cocuksayisi">
+                            <option value="0">Coçuk sayısı secin</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                        <style>
+                            #cocukyaslari {
+                                -webkit-border-radius: 5px;
+                                -moz-border-radius: 5px;
+                                border-radius: 5px 5px 5px 5px;
+                                border: 10px solid rgba(0, 0, 0, 0.50);
+                                display: none;
+                                width: 180px;
+                                padding: 10px;
+                                background-color: rgb(255, 255, 255);
+                                z-index: 3000;
+                                position: absolute;
+                                top: 150px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                text-align:center;
+                            }
+                        </style>
+                        <div id="cocukyaslari">
+
+                        </div>
+                    </li>
+                    <li style="display:none;">
+                        <div id="toplamfiyatdis" style=" color:rgb(11, 185, 9);">Toplam Fiyat: <div id="toplamfiyat"></div></div>
+                    </li>
+                    <li>
+                        <div class="btn btn-success" style="width:100px;height:40px; line-height:30px; padding:5px;color:white;" onclick="satinal();">Tamam</div>
+                    </li>
+                </ul>
+            </div>
+            <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+            <script>
+                $("#yetiskinsayisi").prop("disabled", true);
+                $("#cocuksayisi").prop("disabled", true);
+                var toplam_fiyat = 0;
+                var toplam_cocuk_fiyat = 0;
+                var setturid = $("#urun_id").val();
+                var setyetiskinsayisi = 0;
+                var setcocuksayisi = 0;
+                var setcocukyas1 = 0;
+                var setcocukyas2 = 0;
+                var setcocuk1koltuk = 0;
+                //Değer 1 ise koltuk satın al,değer 0 ise koltuk alma (2 çocuk var ise birisine koltuk zorunlu)/sadece yurt içi
+                var setcocuk2koltuk = 0;
+                //Değer 1 ise koltuk satın al,değer 0 ise koltuk alma/sadece yurt içi
+                //çocuk yok ise koltuk değerleri 0 olarak gönderilmelidir./sadece yurt içi
+                //yurt dışı turlarda koltuk sistem tarafından otomatik verilir değeri 0 olarak gönderilmelidir.
+                var setturtarihi = "0";
+                var setacenteno = "208502";
+                // bu alan mailinize gönderilecektir.
+                var gettur_fiyati = $("#tur_fiyati").val();
+                $(document).ready(function () {
+                    $("#tarihler").change(function () {
+                        setturtarihi = $("select[id=tarihler]").val();
+                        $("#yetiskinsayisi").prop("disabled", false);
+                        $("#saltur_iframe").css("display","none");
+                    });
+                    $("#yetiskinsayisi").change(function () {
+                        $("#saltur_iframe").css("display", "none");
+                        $("#cocuksayisi").prop("disabled", false);
+                        setyetiskinsayisi = "0";
+                        var yetsayi = $("select[id=yetiskinsayisi]").val();
+                        $("select[id=cocuksayisi]").val(0);
+                        var tur_fiyati = $("#tur_fiyati").val();
+                        var tarih = $("select[id=tarihler]").val();
+                        if (tarih == "0") {
+                            alert("BİR TUR TARİHİ SEÇİN");
+                            $("select[id=yetiskinsayisi]").val("0");
+                            yetsayi = 0;
+                        }
+
+                        if (yetsayi == 1) {
+                            setyetiskinsayisi = 1;
+                            var tekkisifarki = 0;
+                            if (document.getElementById("fark " + tarih) == null) {
+                                toplam_fiyat = parseInt(tur_fiyati);
+                            }
+                            else {
+                                tekkisifarki = document.getElementById("fark " + tarih).value;
+                                toplam_fiyat = (parseInt(tur_fiyati) + parseInt(tekkisifarki));
+                            }
+                            $("#toplamfiyat").text(toplam_fiyat + " TL");
+                            document.getElementById("cocuksayisi").style.display = "block";
+
+                        }
+                        else if (yetsayi == 2) {
+                            setyetiskinsayisi = 2;
+                            toplam_fiyat = ((parseInt(tur_fiyati) * 2));
+                            $("#toplamfiyat").text(toplam_fiyat + " TL");
+                            document.getElementById("cocuksayisi").style.display = "block";
+                        }
+                        else if (yetsayi == 3) {
+                            setyetiskinsayisi = 3
+                            var ucuncukisis = 0;
+                            if (document.getElementById("uc " + tarih) == null) {
+                                toplam_fiyat = parseInt(tur_fiyati) * 3;
+                            }
+                            else {
+                                ucuncukisis = document.getElementById("uc " + tarih).value;
+                                toplam_fiyat = ((parseInt(tur_fiyati) * 2) + parseInt(ucuncukisis));
+                            }
+                                
+                            
+                            $("#toplamfiyat").text(toplam_fiyat + " TL");
+                            document.getElementById("cocuksayisi").style.display = "block";
+                        }
+                        else if (yetsayi == 4) {
+                            setyetiskinsayisi = 4;
+                            toplam_fiyat = (parseInt(tur_fiyati) * 4);
+                            $("#toplamfiyat").text(toplam_fiyat + " TL");
+                            document.getElementById("cocuksayisi").style.display = "none";
+                        }
+                    });
+
+                    $("#cocuksayisi").change(function () {
+                        $("#saltur_iframe").css("display", "none");
+                        var cocuksayisi = $("select[id=cocuksayisi]").val();
+                        var yetiskin = $("select[id=yetiskinsayisi]").val();
+
+                        if (cocuksayisi == 2 && setcocukyas1 > 0 && setcocukyas2 > 0)
+                            setyetiskinsayisi--;
+
+                        setcocuk1koltuk = 0;
+                        setcocuk2koltuk = 0;
+                        setcocukyas1 = 0;
+                        setcocukyas2 = 0;
+                        setcocuksayisi = 0;
+                       
+                        
+                        if (cocuksayisi == 2 && yetiskin == 3) {
+                            cocuksayisi = parseInt(cocuksayisi) - 1;
+                            alert("Üç yetişkin yanına sadece bir cocuk secilebilir. Bebek yaş aralındakiler için seçmenize gerek yok");
+                        }
+                        var icerik = "<div style='cursor:pointer; width:35px; height:35px; margin:5px;' onclick='kapat();'><img src='~/content/img/iconlar/error.png' /><br /></div>";
+                        for (var i = 1; i <= cocuksayisi; i++) {
+                            icerik = icerik + "<div><label>" + i + ". Cocuk yaşı</label><input type='date' id='cocukyas_" + i + "' /> <label>Koltuk istiyorum</label> <input id='istek_" + i + "' type='checkbox' /></div>";
+                        }
+                        document.getElementById("cocukyaslari").innerHTML = icerik + "<br/><div class='button btn- success' style='width:100%;height:40px;line-height:40px;background-color:rgb(31, 194, 45); color:white;' onclick='cocukbilgilerihesapla();'>Tamama</div>";
+
+                        if (parseInt(cocuksayisi) > 0)
+                            document.getElementById("cocukyaslari").style.display = "block";
+                        else {
+                            toplam_cocuk_fiyat = 0;
+                            document.getElementById("toplamfiyat").innerHTML = parseInt(toplam_fiyat);
+                        }
+
+                    });
+
+                });
+
+                function kapat() {
+                    document.getElementById("cocukyaslari").style.display = "none";
+                }
+
+                function cocukbilgilerihesapla() {
+                    kapat();
+                    toplam_cocuk_fiyat = 0;
+                    var tarih = $("select[id=tarihler]").val();
+                    var getcocuksayisi = $("select[id=cocuksayisi]").val();
+                    var yetsayisi = $("select[id=yetiskinsayisi]").val();
+                    var cocukyas1 = document.getElementById("cocukyas1_" + tarih).value;
+                    var cocukyas2 = document.getElementById("cocukyas2_" + tarih).value;
+                    var cocukfiyat = document.getElementById("cocukfiyat_" + tarih).value;
+                    var bebekyas1 = document.getElementById("bebekyas1_" + tarih).value;
+                    var bebekyas2 = document.getElementById("bebekyas2_" + tarih).value;
+                    var bebekfiyat = document.getElementById("bebekfiyat_" + tarih).value;
+
+                    var dolar = $("#dolar").val();
+                    var euro = $("#euro").val();
+                    var getcocukdogumtarihi1 = new Date($("#cocukyas_1").val());
+                    var getkoltukistegi1 = $("#istek_1" + ":checked").val();
+                    var getcocukyasi1 = new Date().getFullYear() - getcocukdogumtarihi1.getFullYear();
+                    var getcocukyasi2 = 0;
+                    var getcocukdogumtarihi2;
+                    var getkoltukistegi2;
+                    if ($("#cocukyas_2").val() != null) {
+                        getcocukdogumtarihi2 = new Date($("#cocukyas_2").val());
+                        getkoltukistegi2 = $("#istek_2" + ":checked").val();
+                        getcocukyasi2 = new Date().getFullYear() - getcocukdogumtarihi2.getFullYear();
+                    }
+                    if ($(".turkategori").val() == "YURT İÇİ TURLAR") {
+                        if (getcocukyasi1 >= bebekyas1 && getcocukyasi1 <= bebekyas2) {
+                            setcocuksayisi = 1;
+                            setcocukyas1 = getcocukyasi1;
+                            if (getkoltukistegi1 == "on") {
+                                setcocuk1koltuk = 1;
+                                toplam_cocuk_fiyat = (parseInt(toplam_cocuk_fiyat) + parseInt(bebekfiyat));
+                            }
+                            else 
+                                setcocuk1koltuk = 0; 
+                            setcocuk2koltuk = 0;
+                            document.getElementById("toplamfiyat").innerHTML = (parseInt(toplam_cocuk_fiyat) + parseInt(toplam_fiyat)) + " TL";
+                            if (getcocukyasi2 != 0 && getcocukyasi2 >= bebekyas1 && getcocukyasi2 <= bebekyas2) {
+                                setyetiskinsayisi = setyetiskinsayisi + 1;
+                                if (getkoltukistegi2=="on") {
+                                    setcocuksayisi = 1;
+                                    setcocukyas1 = getcocukyasi1 > getcocukyasi2 ? getcocukyasi1 : getcocukyasi2;
+                                    setcocuk1koltuk = 1;
+                                    setcocuk2koltuk = 0;
+                                    toplam_cocuk_fiyat = (parseInt(gettur_fiyati) * parseInt(setyetiskinsayisi)) + parseInt(bebekfiyat);
+                                } else {
+                                    setcocuksayisi = 1;
+                                    setcocukyas1 = getcocukyasi1 > getcocukyasi2 ? getcocukyasi1 : getcocukyasi2;
+                                    setcocuk1koltuk = 1;
+                                    setcocuk2koltuk = 0;
+                                    toplam_cocuk_fiyat = parseInt(toplam_fiyat) + parseInt(gettur_fiyati) + parseInt(bebekfiyat);
+                                }
+                               
+                                document.getElementById("toplamfiyat").innerHTML = toplam_cocuk_fiyat + " TL";
+                            }
+                            else if (getcocukyasi2 != 0 && getcocukyasi2 >= cocukyas1 && getcocukyasi2 <= cocukyas2) {
+                                setyetiskinsayisi = setyetiskinsayisi + 1;
+                                setcocuksayisi = 1;
+                                setcocukyas1 = getcocukdogumtarihi1;
+                                setcocuk1koltuk = 1;
+                                setcocuk2koltuk = 0;
+                                toplam_cocuk_fiyat = (parseInt(gettur_fiyati) * parseInt(setyetiskinsayisi)) + parseInt(bebekfiyat);
+                                document.getElementById("toplamfiyat").innerHTML = toplam_cocuk_fiyat + " TL";
+                            }
+                        }
+                        else if (getcocukyasi1 >= cocukyas1 && getcocukyasi1 <= cocukyas2) {
+                            setcocuksayisi = 1;
+                            setcocukyas1 = getcocukyasi1;
+                            setcocuk1koltuk = 1;
+                            setcocuk2koltuk = 0;
+                            toplam_cocuk_fiyat = (parseInt(toplam_cocuk_fiyat) + parseInt(cocukfiyat));
+                            document.getElementById("toplamfiyat").innerHTML = (parseInt(toplam_cocuk_fiyat) + parseInt(toplam_fiyat)) + " TL";
+                            if (getcocukyasi2 != 0 && getcocukyasi2 >= bebekyas1 && getcocukyasi2 <= bebekyas2) {
+                                setyetiskinsayisi = setyetiskinsayisi + 1;
+                                setcocuksayisi = 1;
+                                setcocukyas1 = getcocukyasi2;
+                                setcocuk1koltuk = 0;
+                                if (getkoltukistegi2=="on") {
+                                    setcocuksayisi = 1;
+                                    setcocukyas2 = getcocukyasi2;
+                                    setcocuk1koltuk = 1;
+                                    setcocuk2koltuk = 0;
+                                    toplam_cocuk_fiyat = (parseInt(gettur_fiyati) * parseInt(setyetiskinsayisi)) + parseInt(bebekfiyat);
+                                }
+                                document.getElementById("toplamfiyat").innerHTML = toplam_cocuk_fiyat + " TL";
+                            }
+                            else if (getcocukyasi2 != 0 && getcocukyasi2 >= cocukyas1 && getcocukyasi2 <= cocukyas2) {
+                                setyetiskinsayisi = setyetiskinsayisi + 1;
+                                setcocuksayisi = 1;
+                                setcocukyas1 = getcocukyasi1 > getcocukyasi2 ? getcocukyasi1 : getcocukyasi2;
+                                setcocuk1koltuk = 1;
+                                setcocuk2koltuk = 0;
+                                toplam_cocuk_fiyat = (parseInt(gettur_fiyati) * parseInt(setyetiskinsayisi)) + parseInt(cocukfiyat);
+                                document.getElementById("toplamfiyat").innerHTML = toplam_cocuk_fiyat + " TL";
+                            }
+
+                        }
+                        else {
+                            toplam_cocuk_fiyat = (parseInt(gettur_fiyati) * (parseInt(setyetiskinsayisi) + 1));
+                        }
+                    }
+                    else {
+                        if (getcocukyasi1 >= 0 && getcocukyasi1 < 2) {
+                            setcocuksayisi = 1;
+                            setcocukyas1 = getcocukyasi1;
+                            toplam_cocuk_fiyat = (parseInt(toplam_cocuk_fiyat) + parseInt(bebekfiyat));
+
+                            document.getElementById("toplamfiyat").innerHTML = (parseInt(toplam_cocuk_fiyat) + parseInt(toplam_fiyat)) + " TL";
+                            if (getcocukyasi2 != 0 && getcocukyasi2 >= 0 && getcocukyasi2 < 2) {
+                                setcocuksayisi = setcocuksayisi + 1;
+                                setcocukyas2 = getcocukyasi2;
+                                toplam_cocuk_fiyat = (parseInt(toplam_cocuk_fiyat) + parseInt(bebekfiyat));
+                                document.getElementById("toplamfiyat").innerHTML = toplam_cocuk_fiyat + " TL";
+                            }
+                            else if (getcocukyasi2 != 0 && getcocukyasi2 >= 2 && getcocukyasi2 <= 11) {
+                                setcocuksayisi = setcocuksayisi + 1;
+                                setcocukyas2 = getcocukyasi2;
+                                toplam_cocuk_fiyat = (parseInt(toplam_cocuk_fiyat) + parseInt(cocukfiyat));
+                                document.getElementById("toplamfiyat").innerHTML = toplam_cocuk_fiyat + " TL";
+                            }
+                        }
+                        else if (getcocukyasi1 >= 2 && getcocukyasi1 <= 11) {
+                            setcocuksayisi = 1;
+                            setcocukyas1 = getcocukyasi1;
+                            toplam_cocuk_fiyat = parseInt(cocukfiyat);
+                            document.getElementById("toplamfiyat").innerHTML = (parseInt(toplam_cocuk_fiyat) + parseInt(toplam_fiyat)) + " TL";
+                            if (getcocukyasi2 != 0 && getcocukyasi2 >= 0 && getcocukyasi2 < 2) {
+                                setcocuksayisi = setcocuksayisi + 1;
+                                setcocukyas2 = getcocukdogumtarihi2;
+                                toplam_cocuk_fiyat = (parseInt(toplam_cocuk_fiyat) + parseInt(bebekfiyat));
+                                document.getElementById("toplamfiyat").innerHTML = toplam_cocuk_fiyat + " TL";
+                            }
+                            else if (getcocukyasi2 != 0 && getcocukyasi2 >= 2 && getcocukyasi2 <= 11) {
+                                setcocuksayisi = setcocuksayisi + 1;
+                                setcocukyas2 = getcocukdogumtarihi2;
+                                toplam_cocuk_fiyat = (parseInt(toplam_cocuk_fiyat) + parseInt(cocukfiyat));
+                                document.getElementById("toplamfiyat").innerHTML = toplam_cocuk_fiyat + " TL";
+                            }
+
+                        }
+                        else {
+                            toplam_cocuk_fiyat = (parseInt(gettur_fiyati) * (parseInt(setyetiskinsayisi) + 1));
+                        }
+                    }
+
+                }
+
+                function satinal() {
+                    if (setyetiskinsayisi > 0) {
+                        $("#saltur_iframe").css("display", "block");
+                        var linkUrl = "/saltur/api/odeme/" + setturid + "/" + setyetiskinsayisi + "/" + setcocuksayisi + "/" + setcocukyas1 + "/" + setcocukyas2 + "/" + setcocuk1koltuk + "/" + setcocuk2koltuk + "/" + setturtarihi.replace('.', '').replace('.','') + "/" + setacenteno;
+                        var link = "http://www.saltur.com.tr" + linkUrl;
+
+                        document.getElementById("saltur_iframe").innerHTML = "<iframe src='" + link + "' width='1000' height='500'></iframe>";
+
+                    }
+                }
+            </script>
+
+            <div id="saltur_iframe">
+            </div>
+        </div>
+    </div>
+}
+
+@{Html.RenderAction("kullaniciBilgilendirme");}
+
+
+

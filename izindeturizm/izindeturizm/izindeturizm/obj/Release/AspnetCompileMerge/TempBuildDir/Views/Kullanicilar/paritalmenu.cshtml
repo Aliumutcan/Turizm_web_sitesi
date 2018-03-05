@@ -1,0 +1,239 @@
+﻿<!--header-->
+
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@model List<Menu>
+
+<div class="header">
+    <div class="container">
+        <div class="header-grids">
+            <div class="logo">
+                <h1><a href="index.html"><span>İzinde</span>Turizm</a></h1>
+            </div>
+            <!--navbar-header-->
+            <div class="header-dropdown">
+                <div class="emergency-grid">
+                    <ul>
+                        <li>Telefon numarası : </li>
+                        <li class="call">+90 535 629 19 99</li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="nav-top">
+            <div class="">
+                <span class="menu"><img src="~/images/menu.png" alt="" /></span>
+                <section class="ortalayici">
+                    <nav class="acilir-menu">
+                        <ul>
+                            <li>
+                                <a href="@Url.RouteUrl("kanasayfa")"><i class="fa fa-home"></i> Anasayfa</a>
+                            </li>
+                            @foreach (var menu in Model)
+                            {
+                                if (menu.ustid == -1)
+                                {
+                                    <li>
+                                        <a href="@Url.RouteUrl("menudangetir",new { sayfa=1, menuid = menu.id,menu = menu.adi.routeduzelt()})">@menu.adi</a>
+                                        <ul>
+                                            @foreach (var icmenu in Model.Where(x => x.ustid == menu.id))
+                                            {
+                                                <li>
+                                                    <a href="@Url.RouteUrl("menudangetir",new { sayfa=1, menuid = icmenu.id,menu = icmenu.adi.routeduzelt()})">@icmenu.adi</a>
+                                                </li>
+
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                        <div class="cb"></div>
+                    </nav>
+                </section>
+
+                <div class="clearfix"> </div>
+                <!-- script-for-menu -->
+                <script>
+
+                    $("span.menu").click(function () {
+                        $("ul.nav1").slideToggle(300, function () {
+                            // Animation complete.
+                        });
+                    });
+
+                </script>
+                <!-- /script-for-menu -->
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    font-face {
+        font-family: 'Conv_RobotoCondensed-Regular';
+        src: url('../fonts/RobotoCondensed-Regular.eot');
+        src: local('☺'), url('../fonts/RobotoCondensed-Regular.woff') format('woff'), url('../fonts/RobotoCondensed-Regular.ttf') format('truetype'), url('../fonts/RobotoCondensed-Regular.svg') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    * {
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+        border-spacing: 0px;
+        outline: none;
+    }
+
+    article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+
+    body {
+        font-size: 14px;
+        font-family: 'Conv_RobotoCondensed-Regular', Tahoma, sans-serif;
+        color: #000;
+        background: #fff;
+    }
+
+    .ortalayici {
+        width: 1000px;
+        margin: 40px auto;
+        min-height: 1px;
+    }
+
+    a:link, a:visited {
+        text-decoration: none;
+        color: #2C3847;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #2C3847;
+    }
+
+    .cb {
+        clear: both;
+    }
+
+    .acilir-menu {
+        background-color: #E4E4E4;
+    }
+
+        .acilir-menu ul {
+            list-style-type: none;
+        }
+
+            .acilir-menu ul li {
+                position: relative;
+            }
+
+            .acilir-menu ul > li {
+                float: left;
+                border-left: 1px solid #D3D3D3;
+                line-height: 40px;
+                padding: 0px 15px;
+                color: #42556D;
+            }
+
+                .acilir-menu ul > li:first-child {
+                    border-left: none;
+                }
+
+                .acilir-menu ul > li:hover {
+                    background-color: #6fd508;
+                }
+
+                    .acilir-menu ul > li:hover > a {
+                        color: #fff;
+                    }
+
+                .acilir-menu ul > li ul {
+                    display: none;
+                    position: absolute;
+                    width: 120px;
+                }
+
+                    .acilir-menu ul > li ul li {
+                        top: 15px;
+                        line-height: 30px;
+                        padding: 0px 5px;
+                        display: block;
+                        border-bottom: 1px solid #D3D3D3;
+                        width: 120px;
+                        background-color: #eee;
+                        border-left: 0px;
+                    }
+
+                        .acilir-menu ul > li ul li:last-child {
+                            border-bottom: none;
+                        }
+
+                .acilir-menu ul > li > ul {
+                    left: 0px;
+                    top: 25px;
+                }
+
+                    .acilir-menu ul > li > ul li ul {
+                        left: 120px;
+                        top: 0px;
+                    }
+</style>
+<script>
+    jQuery(document).ready(function () {
+        jQuery(".acilir-menu ul li").hover(function () {
+            jQuery(this).children("a").next("ul").css({ "display": "block" });
+        }, function () {
+            jQuery(this).children("a").next("ul").css({ "display": "none" });
+        });
+    });
+</script>
+<!--//header-->
+<ul class="nav1">
+    <li class="dropdown">
+        <a href="@Url.RouteUrl("kanasayfa")">AnaSayfa</a>
+
+    </li>
+    @foreach (var item in Model)
+    {
+        if (item.ustid == -1)
+        {
+            <li class="dropdown">
+                <a href="@Url.RouteUrl("menudangetir",new { sayfa=1, menuid = item.id,menu = item.adi.routeduzelt()})">@item.adi</a>
+                <ul>
+                    @foreach (var item2 in Model)
+                    {
+                        if (item2.ustid == item.id)
+                        {
+                            <li class="dropdown">
+                                <a href="@Url.RouteUrl("menudangetir",new { sayfa=1, menuid = item.id,menu = item.adi.routeduzelt()})">@item2.adi</a>
+
+                            </li>
+                        }
+                    }
+                </ul>
+
+            </li>
+        }
+
+
+    }
+
+
+
+    @*<li class="active"><a href="index.html">Flights</a></li>
+        <li>
+            <a href="hotels.html">Hotels</a>
+        </li>
+        <li><a href="holidays.html">Holidays</a></li>
+        <li><a href="flights-hotels.html">Flight+Hotel</a></li>
+        <li><a href="bus.html">Bus</a></li>
+        <li><a href="trains.html">Trains</a></li>
+        <li><a href="weekend.html">Weekend Getaways</a></li>
+        <li><a href="deals.html">Deals</a></li>*@
+</ul>

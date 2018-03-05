@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Yonetim Tur-Oteli";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+
+@using izindeturizm.Models;
+
+@model List<Urun_Konaklama_Tarih>
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Yeni Tur Ekle</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("YTurOtelEkle", "Yonetim", FormMethod.Post))
+                        {
+                            <div class="form-group">
+                                <label>Otel adı</label>
+                                <input type="text" class="form-control" name="adi" maxlength="100" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label>Kalınacak tarihleri secin</label>
+                                <div class="table-responsive">
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Secin</th>
+                                                <th>Giris Tarihi</th>
+                                                <th>Cıkış Tarihi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @if (ViewData["tarihler"] != null)
+                                            {
+                                                List<Urun_Tarihleri> tarihler = (List<Urun_Tarihleri>)ViewData["tarihler"];
+                                                for (int i = 0; i < tarihler.Count; i++)
+                                                {
+                                            <tr>
+                                                <th><input name="tarihidler" type="checkbox" value="@tarihler[i].id" /></th>
+                                                <th>@tarihler[i].cikis_tarihi</th>
+                                                <th>@tarihler[i].donus_tarihi</th>
+                                            </tr>
+                                                }
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="form-control" value="Ekle">
+                            </div>
+                        }
+                        <div class="form-group">
+                            <a href="@Url.RouteUrl("yanasayfa")"><input type="submit" class="form-control" value="Tur Eklemeyi Bitir" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-->
+        </div><!-- /.row -->
+    </div><!--/.main-->
+
+
+
+
+    @if (Model!=null)
+    {
+        <div class="row" id="eklenenler">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Tüm Tarihler</div>
+                    <div class="panel-body">
+
+                        <div class="table-responsive">
+                            @using (Html.BeginForm("Yotelsil", "Yonetim", FormMethod.Post))
+                            {
+                            <div class="form-group">
+                                <input type="submit" class="form-control" value="Secili olanları sil">
+                                <input type="hidden" name="turid" value="@ViewContext.RouteData.Values["turid"]" />
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sec</th>
+                                        <th>Otel Adı</th>
+                                        <th>CIKIŞ TARİHİ</th>
+                                        <th>DÖNÜŞ TARİHİ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Count; i++)
+                                    {
+                                        <tr>
+                                            <th><input type="checkbox" name="konaklama_tarik_id" value="@Model[i].id" /></th>
+                                            <th>@Model[i].Urun_Konaklama_Bilgisi.adi</th>
+                                            <th>@Model[i].Urun_Tarihleri.cikis_tarihi</th>
+                                            <th>@Model[i].Urun_Tarihleri.donus_tarihi</th>
+                                            
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                            }
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+
+</div>
+
+@{Html.RenderAction("YMesaj");}
+

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "menudanturgetir";
+    Layout = "~/Views/Kullanicilar.cshtml";
+}
+
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Turlar>
+
+<!-- banner-bottom -->
+<div class="banner-bottom">
+    <!-- container -->
+    <div class="container">
+        <div class="banner-bottom-grids">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 banner-bottom-grid">
+                    <div class="banner-bottom-middle">
+                        <a href="@Url.RouteUrl("turdetay",new {id=item.id,baslik=item.baslik.routeduzelt(),nere="tur" })">
+                            @foreach (var galeriicin in (List<Galeri>)ViewData["galeri"])
+                            {
+                                if (item.id == galeriicin.anaID)
+                                {
+                                    <img src="@galeriicin.resimyol" height="200" alt="" />
+                                    break;
+                                }
+
+                            }
+
+                            <div class="destinations-grid-info tours">
+                                <h5>@item.baslik</h5>
+                                <p>@item.aciklama</p>
+                                <p class="b-period">Tur Başlama Tarihi:@item.turbaslamatarihi.Value.ToString("dd-MMM-yyyy")</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+            <br />
+            @if (Model != null)
+            {
+                <div class="pagedList">
+                    @Html.PagedListPager(Model, sayfa => Url.Action("tumturlar", new { sayfa }), PagedListRenderOptions.PageNumbersOnly)
+                </div>
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- //container -->
+</div>
+<!-- //banner-bottom -->
+
+

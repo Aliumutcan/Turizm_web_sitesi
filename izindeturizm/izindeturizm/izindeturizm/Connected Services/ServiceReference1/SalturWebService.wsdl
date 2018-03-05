@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetEnYakinTarihliTurlar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kategori" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEnYakinTarihliTurlarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEnYakinTarihliTurlarResult" type="tns:ArrayOfSalturturlistesi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSalturturlistesi">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="salturturlistesi" nillable="true" type="tns:salturturlistesi" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="salturturlistesi">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="turid" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TurKategori" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TurAdi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TurProgrami" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DahilHizmetler" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HaricHizmetler" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TurFiyati" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TurParaBirimi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TurAnasayfaResmi" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="turbaslangictarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="turbitistarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TurGunGece" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="YolculukTuru" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TurAltKategori" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BebekYas1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BebekYas2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CocukYas1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CocukYas2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BebekFiyati" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CocukFiyati" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Dolar" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Euro" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="SatisDurum" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="turfiyatlari" type="tns:ArrayOfTurGelismisUcret" />
+          <s:element minOccurs="0" maxOccurs="1" name="IslemDurumu" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTurGelismisUcret">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TurGelismisUcret" nillable="true" type="tns:TurGelismisUcret" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TurGelismisUcret">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TurUcretID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TurUcretSubID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UcretTipi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ucret" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="turbaslangictarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="turbitistarihi" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="tarihtablosu" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTurDetayi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="turid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTurDetayiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTurDetayiResult" type="tns:ArrayOfSalturturlistesi" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTurResimleri">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="turid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ApiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTurResimleriResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTurResimleriResult" type="tns:ArrayOfSalturgalerilist" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSalturgalerilist">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="salturgalerilist" nillable="true" type="tns:salturgalerilist" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="salturgalerilist">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SalturTurResim" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetEnYakinTarihliTurlarSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEnYakinTarihliTurlar" />
+  </wsdl:message>
+  <wsdl:message name="GetEnYakinTarihliTurlarSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEnYakinTarihliTurlarResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTurDetayiSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTurDetayi" />
+  </wsdl:message>
+  <wsdl:message name="GetTurDetayiSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTurDetayiResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTurResimleriSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTurResimleri" />
+  </wsdl:message>
+  <wsdl:message name="GetTurResimleriSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTurResimleriResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SalturWebServiceSoap">
+    <wsdl:operation name="GetEnYakinTarihliTurlar">
+      <wsdl:input message="tns:GetEnYakinTarihliTurlarSoapIn" />
+      <wsdl:output message="tns:GetEnYakinTarihliTurlarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTurDetayi">
+      <wsdl:input message="tns:GetTurDetayiSoapIn" />
+      <wsdl:output message="tns:GetTurDetayiSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTurResimleri">
+      <wsdl:input message="tns:GetTurResimleriSoapIn" />
+      <wsdl:output message="tns:GetTurResimleriSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SalturWebServiceSoap" type="tns:SalturWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEnYakinTarihliTurlar">
+      <soap:operation soapAction="http://tempuri.org/GetEnYakinTarihliTurlar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTurDetayi">
+      <soap:operation soapAction="http://tempuri.org/GetTurDetayi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTurResimleri">
+      <soap:operation soapAction="http://tempuri.org/GetTurResimleri" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SalturWebServiceSoap12" type="tns:SalturWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetEnYakinTarihliTurlar">
+      <soap12:operation soapAction="http://tempuri.org/GetEnYakinTarihliTurlar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTurDetayi">
+      <soap12:operation soapAction="http://tempuri.org/GetTurDetayi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTurResimleri">
+      <soap12:operation soapAction="http://tempuri.org/GetTurResimleri" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SalturWebService">
+    <wsdl:port name="SalturWebServiceSoap" binding="tns:SalturWebServiceSoap">
+      <soap:address location="http://www.saltur.com.tr/WebServices/SalturWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SalturWebServiceSoap12" binding="tns:SalturWebServiceSoap12">
+      <soap12:address location="http://www.saltur.com.tr/WebServices/SalturWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

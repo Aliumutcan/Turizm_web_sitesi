@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Tum Urunler";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+
+@using izindeturizm.Models;
+@using PagedList;
+@using PagedList.Mvc;
+
+
+@model IPagedList<Urunler>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active"><a href="@Url.RouteUrl("yturekle")">Yeni Tur Ekle</a></li>
+            <li><a href="@Url.HttpRouteUrl("ytumturlar",new {sayfa=1 })">Tum Turlar</a></li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tüm Turlar</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>BAŞLIK</th>
+                                    <th>Yayın TARİHİ</th>
+                                    <th>FİYAT</th>
+                                    <th>İŞLEMLER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <th>@item.id</th>
+                                            <th>@item.baslik</th>
+                                            <th>@item.tarih.Value.ToString("dd-MMM-yyyy")</th>
+                                            <th>@item.fiyat</th>
+                                            <th>
+                                                <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                                <div class="evethayir" id="ehackapa_@item.id">
+                                                    <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                                    <div class="uyaripenceresisecenek">
+                                                        <div class="evet"><a href="@Url.RouteUrl("ytursil",new { id=item.id })"> EVET</a> </div>
+                                                        <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                                    </div>
+                                                </div>
+
+                                                <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+                                                </script>
+
+                                                <a href="@Url.RouteUrl("yturguncelle",new {id=item.id })" style="float:left;"><svg class="glyph stroked pencil" width="40" height="40"><use xlink:href="#stroked-pencil" /></svg></a>
+                                                <div onclick="goster(@item.id);" style="float:left;"><svg class="glyph stroked notepad " width="40" height="40"><use xlink:href="#stroked-notepad" /></svg></div>
+
+                                                <div class="ayrinti col-md-6" id="dialog_@item.id">
+                                                    <div class="ayrinti_baslik"><div style="float:left">Ayrıntılar</div><div onclick="gizle(@item.id);" style="position:absolute;left:95%; width:35px; height:35px; cursor:pointer;"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel" /></svg></div></div>
+                                                    <div class="panel panel-blue">
+                                                        <div class="panel-heading dark-overlay">Türkçe</div>
+                                                        <div class="panel-body">
+                                                            @Html.Raw(item.icerik)
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-teal">
+                                                        <div class="panel-heading dark-overlay">Diğer dil</div>
+                                                        <div class="panel-body">
+                                                            @Html.Raw(item.ing_icerik)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <a href="@Url.RouteUrl("yuruniletisimbilgileri",new {urun_id=item.id })" style="float:left;"><img src="~/content/img/iconlar/family.png" /></a>
+                                                @if (item.talep_formu == true)
+                                                {
+                                                    <a href="@Url.RouteUrl("yuruntalepformu",new {urun_id=item.id })" style="float:left;"> <img src="~/content/img/iconlar/talepform.png" /> </a>
+
+                                                }
+
+                                            </th>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <text>Hiç bir ver bulunamadı</text>
+                                }
+                            </tbody>
+                        </table>
+                        <script>
+                            var idtut = -1;
+                            function goster(id) {
+                                gizle(idtut);
+                                document.getElementById("dialog_" + id).style.display = "block";
+                                document.getElementById("siyahkaplama").style.display = "block";
+                                idtut = id;
+                            }
+                            function gizle(id) {
+                                if (id > -1) {
+                                    document.getElementById("dialog_" + id).style.display = "none";
+                                    document.getElementById("siyahkaplama").style.display = "none";
+                                }
+                            }
+                        </script>
+                        @if (Model != null)
+                        {
+                            <div class="pagedList">
+                                @Html.PagedListPager(Model, sayfa => Url.Action("YTumTurlar", new { sayfa }), PagedListRenderOptions.PageNumbersOnly)
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@{Html.RenderAction("YMesaj");}

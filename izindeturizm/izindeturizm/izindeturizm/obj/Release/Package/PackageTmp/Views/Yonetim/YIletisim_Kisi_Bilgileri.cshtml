@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Kisi Bilgileri";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+
+@using izindeturizm.Models;
+
+@model List<Urun_Rezervasyon_Kisi_Bilgileri>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tüm Turlar</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cinsiyet</th>
+                                    <th>Adı Soyadı</th>
+                                    <th>Yaşı</th>
+                                    <th>TC Kimlin No</th>
+                                    <th>Pasaport No</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <th>@item.id</th>
+                                            <th>
+                                                @if (item.cinsiyet == true)
+                                                {
+                                                    <text>Bay</text>
+                                                }
+                                                else
+                                                {
+                                                    <text>Bayan</text>
+                                                }
+                                            </th>
+                                            <th>@item.adi @item.soyadi</th>
+                                            <th>
+                                            @{
+                                                int yas = -1;
+                                                if (item.dogum_tarihi!=null)
+                                                {
+                                                     yas= DateTime.Now.Year - item.dogum_tarihi.Value.Year;
+                                                }
+
+
+                                                }
+                                            @if (yas==0)
+                                            {
+                                                yas = DateTime.Now.Month - item.dogum_tarihi.Value.Month;
+                                                <text>@yas Aylık</text>
+                                            }
+                                            else
+                                            {
+                                                @yas
+                                            }
+                                            </th>
+                                            <th>@item.tckimlik</th>
+                                            <th>@item.pasaportno</th>
+                                        </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <text>Hiç bir ver bulunamadı</text>
+                                                }
+                            </tbody>
+                        </table>
+                        <script>
+                            var idtut = -1;
+                            function goster(id) {
+                                gizle(idtut);
+                                document.getElementById("dialog_" + id).style.display = "block";
+                                document.getElementById("siyahkaplama").style.display = "block";
+                                idtut = id;
+                            }
+                            function gizle(id) {
+                                if (id > -1) {
+                                    document.getElementById("dialog_" + id).style.display = "none";
+                                    document.getElementById("siyahkaplama").style.display = "none";
+                                }
+                            }
+                        </script>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@{Html.RenderAction("YMesaj");}
+
+
+
+

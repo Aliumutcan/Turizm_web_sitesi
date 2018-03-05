@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewBag.Title = "Tur Rezarvasyon";
+    Layout = "~/Views/detaykullanici.cshtml";
+}
+@using izindeturizm.Models;
+
+@model Urunler
+
+@using (Html.BeginForm("TurRezarvasyon", "Kullanicilar", FormMethod.Post))
+{
+    <input type="hidden" name="urun_ID" value="@ViewContext.RouteData.Values["id"]" />
+    <input type="hidden" id="para_birimi" value="@Model.para_birimi" />
+    foreach (var item in Model.Urun_Tarihleri)
+    {
+        <input type="hidden" id="bebekfiyat_@item.id" value="@item.bebekfiyat" />
+        <input type="hidden" id="bebekyas1_@item.id" value="@item.bebekyas1" />
+        <input type="hidden" id="bebekyas2_@item.id" value="@item.bebekyas2" />
+        <input type="hidden" id="cocukfiyat_@item.id" value="@item.cocukfiyat" />
+            <input type="hidden" id="cocukyas1_@item.id" value="@item.cocukyas1" />
+            <input type="hidden" id="cocukyas2_@item.id" value="@item.cocukyas2" />
+            <input type="hidden" id="turfiyat_@item.id" value="@item.turfiyat" />
+
+    }
+    <script language="javascript" src="http://www.dovizfiyat.com/dovizjson/serbest/serbestKur/" type="text/javascript"></script>
+    <script>
+        function hesapla(baslik, id) {
+            var parabirimi = $("#para_birimi").val();
+            if (parabirimi == "€") {
+                var sonuceuro = parseFloat($("#" + baslik + "_" + id).val()) * parseFloat(serbestKur.eurSat);
+                $("#" + baslik + "_" + id).val(parseInt(sonuceuro)).trigger('change');
+            }
+            else if (parabirimi == "$") {
+                var sonuc = parseFloat($("#" + baslik + "_" + id).val()) * parseFloat(serbestKur.usdSat);
+                $("#" + baslik + "_" + id).val(parseInt(sonuc)).trigger('change');
+            }
+        }
+    </script>
+
+    <div class="banner-bottom">
+        <div class="container">
+            <style>
+                .rezarvasyon ul li {
+                    float: left;
+                    margin: 10px;
+                    list-style-type: none;
+                }
+            </style>
+            <div class="row secenekler rezarvasyon" style="float:none;">
+                <ul>
+                    <li>
+                        <label>Tur Tarihileri</label>
+                        <select name="urun_tarih_ID" class="form-control" id="tariler">
+                            <option value="0">Bir tarih secin</option>
+                            @foreach (var item in Model.Urun_Tarihleri)
+                            {
+                                <option value="@item.id">@string.Format("{0:dd/MM/yyyy}", item.cikis_tarihi)</option>
+                            }
+                        </select>
+                    </li>
+                    <li>
+                        <label>Yetişkin sayısı</label>
+                        <select class="form-control" name="yetiskinsayisi" id="yetiskinsayisi">
+                            <option value="0">Yetişkin sayısı secin</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Coçuk sayısı</label>
+                        <select class="form-control" name="cocuksayisi" id="cocuksayisi">
+                            <option value="0">Coçuk sayısı secin</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                        <div id="cocukyaslari" style="display:none; width:180px;padding:10px;background-color:rgb(255, 255, 255); z-index:3000; position:absolute;top:150px;margin-left:auto;margin-right:auto;">
+
+                        </div>
+                    </li>
+                    <li>
+                        <div id="toplamfiyatdiv" style="color:rgb(11, 185, 9);">Toplam Fiyat: <div id="toplamfiyat"></div></div>
+                    </li>
+                </ul>
+            </div>
+            <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+            <script>
+                var toplam_fiyat = 0;
+                var toplam_cocuk_fiyat = 0;
+                $(document).ready(function () {
+                    var idler = "";
+                    $("#tariler").change(function () {
+                        var secilentarihid = $("select[id=tariler]").val();
+                        document.getElementById("toplamfiyat").innerHTML = "";
+                        $("select[id=yetiskinsayisi]").val(0);
+                        $("select[id=cocuksayisi]").val(0);
+                        document.getElementById("kisibilgilerialani").innerHTML == "";
+                        document.getElementById("cocukbilgilerialani").innerHTML == "";
+                        if (idler.indexOf(secilentarihid) == -1) {
+                            hesapla("turfiyat",secilentarihid );
+                            hesapla("bebekfiyat", secilentarihid);
+                            hesapla("cocukfiyat", secilentarihid);
+                            idler = idler+"_"+ secilentarihid;
+                        }
+
+                    });
+                    $("#yetiskinsayisi").change(function () {
+                        toplam_fiyat = 0;
+                        $("select[id=cocuksayisi]").val(0);
+                        var secilentarihid = $("select[id=tariler]").val();
+                        var yetişkin_sayisi = document.getElementById("yetiskinsayisi").value;
+                        var icerik = "";
+                        for (var i = 0; i < yetişkin_sayisi; i++)
+                            icerik = icerik + "<div class='page-header'> <h3>" + (i + 1) + ". Yetişkin</h3> </div><ul><li><label>Cinsiyet</label><select class='form-control' name='turrez[" + i + "].cinsiyet'> <option >Cinsiyet Secin</option><option value='true'>Bay</option><option value='false'>Bayan</option></select></li><li><label>Ad</label><input type='text' name='turrez[" + i + "].adi' class='form-control' maxlength='100' /></li><li><label>Soyad</label><input type='text' name='turrez[" + i + "].soyadi' class='form-control' maxlength='100' /></li><li> <label>Doğum Tarihi</label> <input type='date' name='turrez[" + i + "].dogum_tarihi' class='form-control' /></li><li> <label>Tc Kimlik Numarası</label><input type='text' onblur=\"if(hepsini_kontrol_et('turrez[" + i + "].tckimlik')==false){this.value='';}\" name='turrez[" + i + "].tckimlik' id='turrez[" + i + "].tckimlik' class='form-control' maxlength='11' /></li> <li><label>Pasaport Numarası</label><input type='text' onblur=\"if(hepsini_kontrol_et('turrez[" + i + "].pasaportno')==false){this.value='';}\" name='turrez[" + i + "].pasaportno' id='turrez[" + i + "].pasaportno' class='form-control' maxlength='10' /></li></ul><br/><br/><br/>";
+
+                        document.getElementById("kisibilgilerialani").innerHTML = icerik;
+                        toplam_fiyat = toplam_fiyat + (parseInt(yetişkin_sayisi) * parseInt($("#turfiyat_" + secilentarihid).val()));
+                        document.getElementById("toplamfiyat").innerHTML=toplam_fiyat+" TL";
+                    });
+
+                    $("#cocuksayisi").change(function () {
+                        var cocuk_sayisi = $("select[id=cocuksayisi]").val();
+                        if ($("select[id=yetiskinsayisi]").val() > 0 && cocuk_sayisi>0) {
+
+                            var yetiskin = $("select[id=yetiskinsayisi]").val();
+                            var icerik = "";
+                            var sayac = 1;
+                            for (var i = 0; i < yetiskin; i++) {
+                                cocuk_sayisi++;
+                            }
+                            for (var i = yetiskin; i < cocuk_sayisi; i++) {
+                                icerik = icerik + "<div class='page-header'> <h3>" + sayac + ". Coçuk</h3> </div><ul><li><label>Cinsiyet</label><select class='form-control' name='turrez[" + i + "].cinsiyet'> <option >Cinsiyet Secin</option><option value='true'>Bay</option><option value='false'>Bayan</option></select></li><li><label>Ad</label><input type='text' name='turrez[" + i + "].adi' class='form-control' maxlength='100' /></li><li><label>Soyad</label><input type='text' name='turrez[" + i + "].soyadi' class='form-control' maxlength='100' /></li><li> <label>Doğum Tarihi</label> <input type='date' name='turrez[" + i + "].dogum_tarihi' class='form-control' /></li><li> <label>Tc Kimlik Numarası</label><input type='text' onblur=\"if(hepsini_kontrol_et('turrez[" + i + "].tckimlik')==false){this.value='';}\" name='turrez[" + i + "].tckimlik' id='turrez[" + i + "].tckimlik' class='form-control' maxlength='11' /></li> <li><label>Pasaport Numarası</label><input type='text' onblur=\"if(hepsini_kontrol_et('turrez[" + i + "].pasaportno')==false){this.value='';}\" name='turrez[" + i + "].pasaportno' id='turrez[" + i + "].pasaportno' class='form-control' maxlength='10' /></li></ul><br/><br/><br/>";
+                                sayac++;
+                            }
+                            document.getElementById("cocukbilgilerialani").innerHTML = icerik;
+
+                            var icerik = "<div style='cursor:pointer; width:35px; height:35px; margin:5px;' onclick='kapat();'><img src='~/content/img/iconlar/error.png' /><br /></div>";
+                            for (var i = 1; i <= cocuk_sayisi-1; i++)
+                                icerik = icerik + "<div><label class='form- control'>" + i + ". Cocuk yaşı</label><input type='text' maxlength='2' class='form- control' id='cocukyas_" + i + "' /> <label class='form- control'>Koltuk istiyorum</label> <input class='form- control' id='istek_" + i + "' type='checkbox' /></div> <br/>";
+
+                            document.getElementById("cocukyaslari").innerHTML = icerik + "<br/><div class='button btn- success' style='width:100px;height:40px;line-height:40px;background-color:rgb(31, 194, 45); color:white;' onclick='cocukbilgilerihesapla();'>Tamama</div>";
+                            document.getElementById("cocukyaslari").style.display = "block";
+                        }
+                        else {
+                            document.getElementById("cocukbilgilerialani").innerHTML = "";
+                            document.getElementById("toplamfiyat").innerHTML = toplam_fiyat + " TL";
+                        }
+                    });
+                });
+                function kapat() {
+                    document.getElementById("cocukyaslari").style.display = "none";
+                } toplam_cocuk_fiyat
+                function cocukbilgilerihesapla() {
+                    toplam_cocuk_fiyat = 0;
+                    document.getElementById("cocukyaslari").style.display = "none";
+                    var secilentarihid = $("select[id=tariler]").val();
+                    var bebekfiyat = $("#bebekfiyat_" + secilentarihid).val();
+                    var bebekyas1 = $("#bebekyas1_" + secilentarihid).val();
+                    var bebekyas2 = $("#bebekyas2_" + secilentarihid).val();
+                    var cocukfiyat = $("#cocukfiyat_" + secilentarihid).val();
+                    var cocukyas1 = $("#cocukyas1_" + secilentarihid).val();
+                    var cocukyas2 = $("#cocukyas2_" + secilentarihid).val();
+                    var say = 1;
+                    while ($("#cocukyas_" + say).val() != null) {
+                        var yas1 = $("#cocukyas_" + say).val();
+                        var istek1 = $("#istek_" + say).is(":checked");
+                        if (parseInt(yas1) >= parseInt(bebekyas1) && parseInt(yas1) <= parseInt(bebekyas2) && istek1 == true) {
+
+                            toplam_cocuk_fiyat = parseInt(toplam_cocuk_fiyat) + parseInt(bebekfiyat);
+                        }
+                        else if (parseInt(yas1) >= parseInt(cocukyas1) && parseInt(yas1) <= parseInt(cocukyas2)) {
+                            toplam_cocuk_fiyat = parseInt(toplam_cocuk_fiyat) + parseInt(cocukfiyat);
+                        }
+                        else if (parseInt(yas1) > parseInt(cocukyas2)) {
+                            toplam_cocuk_fiyat = parseInt(toplam_cocuk_fiyat) + parseInt($("#turfiyat_" + secilentarihid).val());
+                        }
+                        say++;
+                    }
+
+                    document.getElementById("toplamfiyat").innerHTML = (parseInt(toplam_fiyat) + parseInt(toplam_cocuk_fiyat)) + " TL";
+
+
+                }
+                function cocuktoplamhesapla(yas,istek) {
+
+                }
+            </script>
+            <div class="row rezarvasyon" id="kisibilgilerialani" onmouseout="deneme();" style="float:none;">
+
+            </div>
+
+            <div class="row rezarvasyon" id="cocukbilgilerialani" style="float:none;">
+
+            </div>
+            <div class="row" id="iletisimbilgilerialani" style="float:none;">
+                <div class='kisi' style='margin:15px;'>
+                    <div class="page-header">
+                        <h3>İletişim Bilgileri</h3>
+                    </div>
+
+                    <div class="form-group rezarvasyon">
+                        <ul>
+                            <li>
+                                <label>Telefon Numaranız</label>
+                                <input type="tel" name="tel" class="form-control" onblur="if(hepsini_kontrol_et('tel')==false){this.value='';}" id="tel" maxlength="11" />
+                            </li>
+                            <li>
+                                <label>Mail adresiniz</label>
+                                <input type="email" name="email" class="form-control" maxlength="100" />
+                            </li>
+                            <li>
+                                <label>Adresiniz</label>
+                                <textarea name="adres" class="form-control" maxlength="300" rows="5"></textarea>
+                            </li>
+                            <li>
+                                <label>İstek Notunuz</label>
+                                <textarea name="istek_notu" class="form-control" maxlength="300" rows="5"></textarea>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <br />
+                    <div class="">
+                        <input type="submit" class="form-control" value="GÖNDER" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+@{Html.RenderAction("kullaniciBilgilendirme");}

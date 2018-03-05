@@ -1,0 +1,384 @@
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\csc.exe
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\vbc.exe
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\izindeturizm.dll.config
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\izindeturizm.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\izindeturizm.pdb
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\Antlr3.Runtime.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\EntityFramework.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\Newtonsoft.Json.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\PagedList.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\PagedList.Mvc.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Helpers.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Mvc.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Optimization.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Razor.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Webpages.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\WebActivatorEx.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\WebGrease.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\Antlr3.Runtime.pdb
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\EntityFramework.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\Newtonsoft.Json.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\PagedList.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\PagedList.Mvc.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Optimization.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Razor.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Webpages.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Helpers.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Mvc.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\obj\Release\izindeturizm.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\obj\Release\izindeturizm.pdb
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\Microsoft.CSharp.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.ComponentModel.DataAnnotations.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Configuration.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Data.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Drawing.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.EnterpriseServices.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Runtime.Serialization.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Security.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.ApplicationServices.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.DynamicData.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Entity.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Services.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Xml.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\obj\Release\izindeturizm.csprojResolveAssemblyReference.cache
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Data.DataSetExtensions.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Extensions.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Xml.Linq.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Cors.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Http.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.dll
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Http.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.xml
+C:\Users\AliUmutcan\documents\visual studio 2015\Projects\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.xml
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\csc.exe
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\System.Collections.Immutable.dll
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\System.Reflection.Metadata.dll
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\vbc.exe
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe
+D:\projeler\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe.config
+D:\projeler\izindeturizm\izindeturizm\bin\izindeturizm.dll.config
+D:\projeler\izindeturizm\izindeturizm\bin\izindeturizm.dll
+D:\projeler\izindeturizm\izindeturizm\bin\izindeturizm.pdb
+D:\projeler\izindeturizm\izindeturizm\bin\Antlr3.Runtime.dll
+D:\projeler\izindeturizm\izindeturizm\bin\EntityFramework.dll
+D:\projeler\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.dll
+D:\projeler\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\projeler\izindeturizm\izindeturizm\bin\Microsoft.CSharp.dll
+D:\projeler\izindeturizm\izindeturizm\bin\Microsoft.Web.Infrastructure.dll
+D:\projeler\izindeturizm\izindeturizm\bin\Newtonsoft.Json.dll
+D:\projeler\izindeturizm\izindeturizm\bin\PagedList.dll
+D:\projeler\izindeturizm\izindeturizm\bin\PagedList.Mvc.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.ComponentModel.DataAnnotations.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Configuration.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Data.DataSetExtensions.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Data.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Drawing.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.EnterpriseServices.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Runtime.Serialization.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Security.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.ApplicationServices.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Cors.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.DynamicData.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Entity.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Extensions.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Helpers.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Http.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Mvc.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Optimization.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Razor.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Services.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Webpages.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Xml.dll
+D:\projeler\izindeturizm\izindeturizm\bin\System.Xml.Linq.dll
+D:\projeler\izindeturizm\izindeturizm\bin\WebActivatorEx.dll
+D:\projeler\izindeturizm\izindeturizm\bin\WebGrease.dll
+D:\projeler\izindeturizm\izindeturizm\bin\Antlr3.Runtime.pdb
+D:\projeler\izindeturizm\izindeturizm\bin\EntityFramework.xml
+D:\projeler\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.xml
+D:\projeler\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\projeler\izindeturizm\izindeturizm\bin\Newtonsoft.Json.xml
+D:\projeler\izindeturizm\izindeturizm\bin\PagedList.xml
+D:\projeler\izindeturizm\izindeturizm\bin\PagedList.Mvc.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Http.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Optimization.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Razor.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Webpages.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Helpers.xml
+D:\projeler\izindeturizm\izindeturizm\bin\System.Web.Mvc.xml
+D:\projeler\izindeturizm\izindeturizm\obj\Release\izindeturizm.csprojResolveAssemblyReference.cache
+D:\projeler\izindeturizm\izindeturizm\obj\Release\izindeturizm.dll
+D:\projeler\izindeturizm\izindeturizm\obj\Release\izindeturizm.pdb
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\csc.exe
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\System.Collections.Immutable.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\System.Reflection.Metadata.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\vbc.exe
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe.config
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\izindeturizm.dll.config
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\izindeturizm.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\izindeturizm.pdb
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Antlr3.Runtime.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\EntityFramework.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Microsoft.CSharp.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Microsoft.Web.Infrastructure.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Newtonsoft.Json.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\PagedList.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\PagedList.Mvc.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.ComponentModel.DataAnnotations.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Configuration.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Data.DataSetExtensions.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Data.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Drawing.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.EnterpriseServices.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Runtime.Serialization.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Security.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.ApplicationServices.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Cors.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.DynamicData.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Entity.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Extensions.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Helpers.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Mvc.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Optimization.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Razor.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Services.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Xml.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Xml.Linq.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\WebActivatorEx.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\WebGrease.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Antlr3.Runtime.pdb
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\EntityFramework.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Newtonsoft.Json.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\PagedList.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\PagedList.Mvc.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Optimization.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Razor.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Helpers.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Mvc.xml
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\obj\Release\izindeturizm.csprojResolveAssemblyReference.cache
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\obj\Release\izindeturizm.csproj.CoreCompileInputs.cache
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\obj\Release\izindeturizm.dll
+F:\projeler\izindeturizm 24-07-2017\izindeturizm\izindeturizm\obj\Release\izindeturizm.pdb
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\csc.exe
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\vbc.exe
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\izindeturizm.dll.config
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\izindeturizm.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\izindeturizm.pdb
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Antlr3.Runtime.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\EntityFramework.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Microsoft.CSharp.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Newtonsoft.Json.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\PagedList.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\PagedList.Mvc.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.ComponentModel.DataAnnotations.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Configuration.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Data.DataSetExtensions.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Data.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Drawing.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.EnterpriseServices.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Runtime.Serialization.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Security.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.ApplicationServices.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Cors.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.DynamicData.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Entity.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Extensions.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Helpers.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Mvc.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Optimization.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Razor.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Services.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Xml.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Xml.Linq.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\WebActivatorEx.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\WebGrease.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Antlr3.Runtime.pdb
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\EntityFramework.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\Newtonsoft.Json.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\PagedList.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\PagedList.Mvc.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Optimization.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Razor.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Helpers.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\bin\System.Web.Mvc.xml
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\obj\Release\izindeturizm.csprojResolveAssemblyReference.cache
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\obj\Release\izindeturizm.csproj.CoreCompileInputs.cache
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\obj\Release\izindeturizm.dll
+C:\Users\alium\Desktop\izindeturizm 24-07-2017\izindeturizm\izindeturizm\obj\Release\izindeturizm.pdb
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\csc.exe
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\vbc.exe
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\izindeturizm.dll.config
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\izindeturizm.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\izindeturizm.pdb
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Antlr3.Runtime.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Elmah.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\EntityFramework.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Microsoft.CSharp.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Newtonsoft.Json.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\PagedList.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\PagedList.Mvc.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.ComponentModel.DataAnnotations.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Configuration.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Data.DataSetExtensions.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Data.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Drawing.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.EnterpriseServices.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Runtime.Serialization.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Security.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.ApplicationServices.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Cors.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.DynamicData.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Entity.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Extensions.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Helpers.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Http.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Mvc.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Optimization.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Razor.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Services.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Webpages.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Xml.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Xml.Linq.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\WebActivatorEx.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\WebGrease.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Antlr3.Runtime.pdb
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\EntityFramework.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\EntityFramework.SqlServer.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\Newtonsoft.Json.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\PagedList.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\PagedList.Mvc.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Net.Http.Formatting.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Http.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Http.Cors.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Http.WebHost.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Optimization.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Razor.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Webpages.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Webpages.Deployment.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Webpages.Razor.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Helpers.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\bin\System.Web.Mvc.xml
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\obj\Release\izindeturizm.csprojResolveAssemblyReference.cache
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\obj\Release\izindeturizm.csproj.CoreCompileInputs.cache
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\obj\Release\izindeturizm.dll
+C:\Users\alium\Desktop\izindeturizm\izindeturizm\izindeturizm\obj\Release\izindeturizm.pdb

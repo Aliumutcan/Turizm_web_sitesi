@@ -1,0 +1,46 @@
+﻿
+<script src="~/content/js/genel.js"></script>
+<div class="talep_formu">
+    <div class="col-md-12" >
+            @using (Html.BeginForm("TalepFormu","Kullanicilar",FormMethod.Post))
+            {
+                <div class="tf_form">
+                    <img src="~/content/img/iconlar/error.png" style="float:right; cursor:pointer;" onclick="kapa();" /><br />
+                    <h3>Talep Formu</h3>
+                    <p>Ad Soyad</p>
+                    <input type="text" maxlength="99" name="adsoyad" class="form-control">
+                    <p>Eposta</p>
+                    <input type="email" max="99" name="eposta" class="form-control">
+                    <p>Telefon Numarası</p>
+                    <input type="text" id="tel"  onblur="if(hepsini_kontrol_et('tel')==false){this.value='';}" max="11" name="tel" class="form-control">
+                    <p>İstek Notu</p>
+                    <textarea rows="5" name="istek_notu" maxlength="299" class="form-control"></textarea><br />
+                    <input type="hidden" name="id" value="@ViewContext.RouteData.Values["id"]" />
+                    <input type="submit" id="login" value="Gönder" class="form-control">
+                </div>
+            }
+        
+    </div>
+</div>
+<style>
+    .talep_formu{
+        position:fixed;
+        top:0px;
+        left:0px;
+        margin:0px;
+        padding:0px;
+        width:100%;
+        height:100%;
+        z-index:3000;
+        background-color:rgba(0, 0, 0, 0.50);
+    }
+    .tf_form{
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:10%;
+        background-color:rgb(246, 219, 67);
+        padding:10px;
+        width:300px;
+        z-index:2002;
+    }
+</style>

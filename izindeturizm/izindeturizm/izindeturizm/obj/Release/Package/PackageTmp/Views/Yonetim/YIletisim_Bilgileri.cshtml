@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Iletisim Bilgileri";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+
+@using izindeturizm.Models;
+
+@model List<Urun_Rezervasyon_Iletisim_Bilgileri>
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tüm Turlar</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>İstek Notu</th>
+                                    <th>Rezervasyon Tarihi</th>
+                                    <th>Adresi</th>
+                                    <th>E-Posta</th>
+                                    <th>Telefon No</th>
+                                    <th>Oda Sayısı</th>
+                                    <th>İŞLEMLER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                <tr>
+                                    <th>@item.id</th>
+                                    <th>@item.istek_notu</th>
+                                    <th>@item.tarih.Value.ToString("dd-MMM-yyyy")</th>
+                                    <th>@item.adres</th>
+                                    <th>@item.email</th>
+                                    <th>@item.tel</th>
+                                    <th>@item.oda_sayisi</th>
+                                    <th>
+                                        <div style="float:left; cursor:pointer;" onclick="ehac(@item.id);"><svg class="glyph stroked cancel" width="40" height="40"><use xlink:href="#stroked-cancel" /></svg></div>
+
+                                        <div class="evethayir" id="ehackapa_@item.id">
+                                            <div class="icerik">Silme işlemi yapılsın mı?</div><br />
+                                            <div class="uyaripenceresisecenek">
+                                                <div class="evet"><a href="@Url.Action("YIletisim_Bilgileri_sil",new { iletisim_bilgileri_id = item.id })"> EVET</a> </div>
+                                                <div class="hayir" onclick="ehkapa(@item.id);">HAYIR</div>
+                                            </div>
+                                        </div>
+
+                                        <script>
+                                                    function ehac(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "block";
+                                                        document.getElementById("siyahkaplama").style.display = "block";
+                                                    }
+                                                    function ehkapa(id) {
+                                                        document.getElementById("ehackapa_"+id).style.display = "none";
+                                                        document.getElementById("siyahkaplama").style.display = "none";
+                                                    }
+                                        </script>
+
+                                        <a href="@Url.RouteUrl("yurunkisibilgileri",new {iletisim_id=item.id })" style="float:left;"><img src="~/content/img/iconlar/family.png" /></a>
+                                    </th>
+                                </tr>
+                                    }
+                                }
+                                else
+                                {
+                                <text>Hiç bir ver bulunamadı</text>
+                                }
+                            </tbody>
+                        </table>
+                        <script>
+                            var idtut=-1;
+                            function goster(id) {
+                                gizle(idtut);
+                                document.getElementById("dialog_" + id).style.display = "block";
+                                document.getElementById("siyahkaplama").style.display = "block";
+                                idtut=id;
+                            }
+                            function gizle(id) {
+                                if (id >-1) {
+                                    document.getElementById("dialog_" + id).style.display = "none";
+                                    document.getElementById("siyahkaplama").style.display = "none";
+                                }
+                            }
+                        </script>
+
+                    </div>
+                    <br />
+                    <input type="submit" onclick="ExportToExcel();" class="btn-info" value="Exel cıktısı ver" />
+                    <script>
+                       
+                        ///Yonetim/GridExportToExcel?urun_id=4
+                        function ExportToExcel() {
+                            var url = '@Url.Action("GridExportToExcel", "Yonetim",new {urun_id=ViewContext.RouteData.Values["urun_id"] })';
+                            
+                            window.open(url);
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@{Html.RenderAction("YMesaj");}
+
+
+
+

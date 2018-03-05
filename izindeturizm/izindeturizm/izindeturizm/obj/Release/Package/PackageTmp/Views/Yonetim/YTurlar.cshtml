@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+
+@using izindeturizm.Models;
+@using izindeturizm.Controllers.Genelislemler;
+@model Urunler
+
+<script type="text/javascript">
+
+        (function () {
+
+            tinyMCE.init({
+
+                // General options
+                mode: "textareas",
+                elements: "@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)",
+                theme: "advanced",
+                height: "500",
+                width: "790",
+                verify_html: false,
+                plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
+
+                // Theme options
+                theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+                theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+                theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+                theme_advanced_buttons4: "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft,codehighlighting,netadvimage",
+                theme_advanced_toolbar_location: "top",
+                theme_advanced_toolbar_align: "left",
+                theme_advanced_statusbar_location: "bottom",
+                theme_advanced_resizing: false,
+
+                // Example content CSS (should be your site CSS)
+                //content_css : "css/content.css",
+                content_css: "@Url.Content("~/Scripts/tinymce/css/content.css")",
+                convert_urls: false,
+
+                // Drop lists for link/image/media/template dialogs
+                template_external_list_url: "lists/template_list.js",
+                external_link_list_url: "lists/link_list.js",
+                external_image_list_url: "lists/image_list.js",
+                media_external_list_url: "lists/media_list.js",
+
+            });
+
+        })();
+
+</script>
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active"><a href="@Url.RouteUrl("yturekle")">Yeni Tur Ekle</a></li>
+            <li><a href="@Url.RouteUrl("ytumturlar",new {sayfa=1 })">Tum Turlar</a></li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Yeni Tur Ekle</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("YTurlar", "Yonetim", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="form-group">
+                                <label>Urun Türü</label>
+                                @{ 
+                                    List<Enumlar.Urun_Tipleri> urun_tipleri =(List<Enumlar.Urun_Tipleri>)Enumlar.EnumToList<Enumlar.Urun_Tipleri>();
+                                }
+                                    <select class="form-control selected" name="urun_sinifi">
+                                        @if (Model!=null)
+                                        {
+                                            urun_tipleri[(int)Model.urun_sinifi].ToString();
+                                        }
+                                        @for (int i = 0; i < urun_tipleri.Count; i++)
+                                        {
+                                            <option value="@i">@urun_tipleri[i]</option>
+                                        }
+                                    </select>
+                                
+
+                            </div>
+                            <div class="form-group">
+                                <label>Tur Başlığı</label>
+                                @if (Model == null)
+                                {
+                                    <input class="form-control" name="baslik" maxlength="100" placeholder="Tur başlığı">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="baslik" maxlength="100" placeholder="Tur başlığı" value="@Model.baslik">
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label>İnglizce Tur başlığı</label>
+                                @if (Model == null)
+                                {
+                                    <input class="form-control" name="ing_baslik" placeholder="Tur başlışı">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="ing_baslik" placeholder="Tur başlışı" value="@Model.ing_baslik">
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label>İçerik</label>
+                                @if (Model == null)
+                                {
+                                    <textarea name="icerik"></textarea>
+                                }
+                                else
+                                {
+                                    <textarea name="icerik">@Model.icerik</textarea>
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>İnglizce İçerik</label>
+                                @if (Model == null)
+                                {
+                                    <textarea name="ing_icerik"></textarea>
+                                }
+                                else
+                                {
+                                    <textarea name="ing_icerik">@Model.ing_icerik</textarea>
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>Fiyat</label>
+                                @if (Model == null)
+                                {
+                                    <input class="form-control" name="fiyat" placeholder="Fiyatı">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="fiyat" placeholder="Fiyatı" value="@Model.fiyat">
+                                    <input type="hidden" name="id" value="@Model.id" />
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>Menusu</label>
+                                @if (Model == null)
+                                {
+                                    <select name="menu_ID" class="form-control selected">
+                                        <option value="-1">Menusunu secin</option>
+                                        @foreach (var item in (List<Menu>)ViewData["menuler"])
+                                        {
+                                            <option value="@item.id">@item.adi</option>
+                                        }
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select name="menu_ID" class="form-control selected">
+                                        <option value="@Model.menu_ID">
+                                        @{List<Menu> menular= (List<Menu>)ViewData["menuler"];}
+                                            @menular.Where(x => x.id == Model.menu_ID).Select(y => y.adi).Take(1).FirstOrDefault()
+                                        </option>
+                                        @foreach (var item in (List<Menu>)ViewData["menuler"])
+                                        {
+                                            <option value="@item.id">@item.adi</option>
+                                        }
+                                    </select>
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>Talep Formu</label>
+                                @if (Model == null)
+                                {
+                                    <select name="talep_formu" class="form-control selected">
+                                        <option value="false">Talep Formu Kapat</option>
+                                        <option value="true">Talep Formu Ac</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select name="talep_formu" class="form-control selected">
+                                        @if (Model.talep_formu == true)
+                                        {
+                                            <option value="true">Talep Formu Ac</option>
+                                            <option value="false">Talep Formu Kapat</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="false">Talep Formu Kapat</option>
+                                            <option value="true">Talep Formu Ac</option>
+                                        }
+                                    </select>
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>Etiket</label>
+                                @{  string birlstir = "";}
+                                @if (Model != null && Model.Etiketler.Count > 0)
+                                {
+                                    foreach (var item in Model.Etiketler)
+                                    {
+                                        birlstir = birlstir+ item.etiket_adi + ",";
+                                    }
+                                    <input type="text" class="form-control" name="etiketler" value="@birlstir.Substring(0,birlstir.Length-1)"/>
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" name="etiketler" />
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>Resimler</label>
+                                <input type="file" class="form-control" multiple name="resimler">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control" value="Tamam">
+                            </div>
+
+                                    }
+                    </div>
+                </div>
+            </div><!-- /.col-->
+        </div><!-- /.row -->
+
+    </div><!--/.main-->
+</div>
+
+@{Html.RenderAction("YMesaj");}

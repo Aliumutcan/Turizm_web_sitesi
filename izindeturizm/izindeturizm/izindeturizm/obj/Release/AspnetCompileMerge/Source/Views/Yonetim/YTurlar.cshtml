@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "YTurlar";
+    Layout = "~/Views/Yonetim.cshtml";
+}
+
+@using izindeturizm.Models;
+
+@model Turlar
+
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active"><a href="@Url.RouteUrl("yturekle")">Yeni Tur Ekle</a></li>
+            <li><a href="@Url.RouteUrl("ytumturlar",new {sayfa=1 })">Tum Turlar</a></li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Yeni Tur Ekle</div>
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        @using (Html.BeginForm("YTurlar", "Yonetim", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="form-group">
+                                <label>Tur Başlığı</label>
+                                @if (Model == null)
+                                {
+                                    <input class="form-control" name="baslik" maxlength="100" placeholder="Tur başlığı">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="baslik" maxlength="100" placeholder="Tur başlığı" value="@Model.baslik">
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label>İnglizce Tur başlığı</label>
+                                @if (Model == null)
+                                {
+                                    <input class="form-control" name="ingbaslik" placeholder="Tur başlışı">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="ingbaslik" placeholder="Tur başlışı" value="@Model.ingbaslik">
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label>Tur Acıklama</label>
+                                @if (Model == null)
+                                {
+                                    <input class="form-control" type="text" name="aciklama" maxlength="400" placeholder="Tur Acıklama">
+                                    
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="aciklama" placeholder="Tur başlışı" value="@Model.aciklama">
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label>İnglizce Tur Acıklama</label>
+                                @if (Model == null)
+                                {
+                                    <input class="form-control" name="ingaciklama" maxlength="400" multiple placeholder="Tur Acıklama">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="ingaciklama" placeholder="Tur başlışı" value="@Model.ingaciklama">
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label>İçerik</label>
+                                @if (Model == null)
+                                {
+                                    <textarea name="icerik"></textarea>
+                                }
+                                else
+                                {
+                                    <textarea name="icerik">@Model.icerik</textarea>
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>İnglizce İçerik</label>
+                                @if (Model == null)
+                                {
+                                    <textarea name="ingicerik"></textarea>
+                                }
+                                else
+                                {
+                                    <textarea name="ingicerik">@Model.ingicerik</textarea>
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>Başlama Tarihi</label>
+                                @if (Model == null)
+                                {
+                                    <input type="date" name="turbaslamatarihi" class="form-control">
+                                }
+                                else
+                                {
+                                    <input type="hidden" id="tut" value="@Model.turbaslamatarihi.Value.ToString("yyyy-dd-MM")" />
+                                    <script src="~/Scripts/jquery-1.9.1.js"></script>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            var enitarih = "@Model.turbaslamatarihi.Value.ToString("yyyy-MM-dd")";
+                                            document.getElementById("yenitarih").value = enitarih;
+                                            var tarih = document.getElementById("yenitarih");
+                                        });
+
+                                    </script>
+                                    <input type="date" name="turbaslamatarihi" id="yenitarih" class="form-control">
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>Fiyat</label>
+                                @if (Model == null)
+                                {
+                                    <input class="form-control" name="fiyat" placeholder="Fiyatı">
+                                }
+                                else
+                                {
+                                    <input class="form-control" name="fiyat" placeholder="Fiyatı" value="@Model.fiyat">
+                                    <input type="hidden" name="id" value="@Model.id" />
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                <label>Menusu</label>
+                                @if (ViewData["menuler"] != null)
+                                {
+                                    <select name="menuID" class="form-control selected">
+                                        <option value="-1">Menusunu secin</option>
+                                        @foreach (var item in (List<Menu>)ViewData["menuler"])
+                                        {
+                                            <option value="@item.id">@item.adi</option>
+                                        }
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select name="menuID" class="form-control selected">
+                                        <option value="-1">Menusunu secin</option>
+                                    </select>
+                                }
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Resimler</label>
+                                <input type="file" class="form-control" multiple name="resimler">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="form-control" value="Tamam">
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div><!-- /.col-->
+        </div><!-- /.row -->
+
+    </div><!--/.main-->
+</div>
+
+@{Html.RenderAction("YMesaj");}

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Iletisim_hakimizda";
+    Layout = "~/Views/detaykullanici.cshtml";
+}
+@using izindeturizm.Models;
+
+
+<script src="~/content/js/genel.js"></script>
+<div class="banner-bottom">
+    <!-- container -->
+    <div class="container">
+        <div class="faqs-top-grids">
+            <div class="book-grids">
+                @using (Html.BeginForm("Iletisim_hakkimizda", "Kullanicilar", FormMethod.Post))
+                {
+                    <div class="col-md-6 book-left">
+                        <div class="book-left-info">
+                            <h3>Bize Mesajınızı İletebilirsiniz</h3>
+                        </div>
+                        <div class="book-left-form">
+                            <p>Adınız Soyadınız</p>
+                            <input type="text" name="adisoyadi"  onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                            <p>Email</p>
+                            <input type="text" name="email" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+                            <p>Telefon Numaranız</p>
+                            <input type="text" id="tel" name="tel" value=""  onfocus="this.value = '';" onblur="if (hepsini_kontrol_et('tel') == false) this.value = '';">
+                            <p>Mesajınız</p>
+                            <textarea rows="5" name="mesaj"></textarea>
+                            <input type="submit" id="login" value="Gönder">
+                        </div>
+                    </div>
+                }
+                
+                <div class="col-md-6 book-left book-right">
+                    <div class="book-left-info">
+                        <h3>Hakkımızda</h3>
+                    </div>
+                    @if ((int)ViewData["hakkimizda"] !=-1)
+                    {
+                        @Html.Raw(ViewData["hakkimizda"])
+                    }
+                    else
+                    {
+                            <div >BİLGİLERİMİZ DAHA SONRA EKLENECEKTİR.</div>
+                    }
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- //container -->
+</div>
